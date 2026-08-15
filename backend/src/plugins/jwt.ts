@@ -93,7 +93,8 @@ export function sessionCookieOptions() {
  */
 export async function tryGetAdminId(request: FastifyRequest): Promise<string | null> {
   try {
-    const { adminId } = await request.jwtVerify({ onlyCookie: true });
+    await request.jwtVerify({ onlyCookie: true });
+    const { adminId } = request.user;
     return adminId;
   } catch {
     return null;
