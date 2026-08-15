@@ -1,0 +1,22 @@
+.dashboard-page__header h1 {
+  font-size: var(--fs-2xl);
+  margin: 6px 0 8px;
+}
+
+.dashboard-page__sub {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+}
+
+.dashboard-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin: 36px 0;
+}
+
+.dashboard-page__quicklinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}

@@ -1,0 +1,177 @@
+.contact__panel {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 96px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.contact__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 0%,
+    var(--accent-glow),
+    transparent 70%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.contact__panel .eyebrow {
+  justify-content: center;
+}
+
+.contact__headline {
+  position: relative;
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  max-width: 640px;
+}
+
+.contact__sub {
+  position: relative;
+  font-size: var(--fs-md);
+  color: var(--text-1);
+  margin-top: 20px;
+  max-width: 460px;
+}
+
+.contact__actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 44px;
+}
+
+@media (max-width: 560px) {
+  .contact__panel {
+    padding: 64px 24px;
+  }
+}
+
+.contact__divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 48px;
+}
+
+.contact__divider::before,
+.contact__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.contact__divider span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.contact__form {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.contact__form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 560px) {
+  .contact__form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact__field span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.contact__field input,
+.contact__field textarea {
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  transition: border-color var(--dur-fast) var(--ease);
+  resize: vertical;
+}
+
+.contact__field input:focus,
+.contact__field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.contact__error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+.contact__success {
+  position: relative;
+  margin-top: 32px;
+  font-size: var(--fs-md);
+  color: var(--text-0);
+}
+
+.contact__form .btn {
+  align-self: flex-start;
+}
+
+.contact__form .btn:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+/* Off-screen, not display:none — some bots skip fields that aren't
+   rendered at all, so this stays in the layout flow but invisible and
+   unreachable by tab order (see tabIndex=-1 in Contact.tsx). */
+.contact__honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

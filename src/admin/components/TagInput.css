@@ -1,0 +1,58 @@
+.tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 9px 10px;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.tag-input:focus-within {
+  border-color: var(--accent);
+}
+
+.tag-input__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.tag-input__chip button {
+  background: transparent;
+  border: none;
+  color: var(--accent);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.tag-input__chip button:hover {
+  opacity: 1;
+}
+
+.tag-input__field {
+  flex: 1;
+  min-width: 120px;
+  background: transparent;
+  border: none;
+  color: var(--text-0);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  padding: 6px 4px;
+}
+
+.tag-input__field:focus {
+  outline: none;
+}

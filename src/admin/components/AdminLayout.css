@@ -1,0 +1,208 @@
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-0);
+}
+
+/* ---------- shared bits (logo, nav links, footer) ---------- */
+.admin-sidebar__logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-0);
+  letter-spacing: 0.01em;
+}
+
+.admin-sidebar__logo span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.75em;
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.admin-sidebar__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  border-left: 2px solid transparent;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
+    border-color var(--dur-fast) var(--ease);
+}
+
+.admin-sidebar__link:hover {
+  color: var(--text-0);
+  background: var(--field-bg);
+}
+
+.admin-sidebar__link.is-active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+
+.admin-sidebar__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.admin-sidebar__admin {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  overflow: hidden;
+}
+
+.admin-sidebar__admin span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-sidebar__admin-dot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px 1px var(--accent-glow);
+}
+
+/* ---------- desktop sidebar ---------- */
+.admin-sidebar {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .admin-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 240px;
+    flex: none;
+    padding: 26px 18px;
+    border-right: 1px solid var(--border);
+    background: var(--bg-1);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ---------- mobile topbar ---------- */
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-1);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+@media (min-width: 960px) {
+  .admin-topbar {
+    display: none;
+  }
+}
+
+.admin-topbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  padding: 0;
+}
+
+.admin-topbar__toggle span {
+  display: block;
+  width: 15px;
+  height: 1.5px;
+  background: var(--text-0);
+  transition: transform var(--dur-fast) var(--ease), opacity var(--dur-fast) var(--ease);
+}
+
+.admin-topbar__toggle.is-open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.admin-topbar__toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.admin-topbar__toggle.is-open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ---------- mobile drawer ---------- */
+.admin-mobile-menu {
+  position: fixed;
+  inset: 0;
+  top: 69px;
+  z-index: 49;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 22px 20px;
+  background: rgba(8, 9, 10, 0.98);
+  backdrop-filter: blur(10px);
+  transform: translateX(-100%);
+  transition: transform var(--dur-med) var(--ease);
+}
+
+.admin-mobile-menu.is-open {
+  transform: translateX(0);
+}
+
+.admin-mobile-menu .admin-sidebar__link {
+  font-size: var(--fs-md);
+  padding: 13px 14px;
+}
+
+@media (min-width: 960px) {
+  .admin-mobile-menu {
+    display: none;
+  }
+}
+
+/* ---------- content ---------- */
+.admin-content {
+  padding: 28px 20px 60px;
+}
+
+@media (min-width: 640px) {
+  .admin-content {
+    padding: 36px 32px 72px;
+  }
+}
+
+@media (min-width: 960px) {
+  .admin-content {
+    padding: 44px 44px 80px;
+  }
+}

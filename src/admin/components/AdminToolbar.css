@@ -1,0 +1,48 @@
+.admin-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.admin-toolbar__input,
+.admin-toolbar__select {
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  color: var(--text-0);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.admin-toolbar__input:focus,
+.admin-toolbar__select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.admin-toolbar__input {
+  flex: 1 1 200px;
+  min-width: 160px;
+}
+
+.admin-toolbar__select {
+  flex: 0 0 auto;
+}
+
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.admin-pagination__info {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+}

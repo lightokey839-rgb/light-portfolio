@@ -1,0 +1,16 @@
+.coming-soon {
+  padding: 40px 32px;
+  border-radius: var(--radius-md);
+  max-width: 480px;
+}
+
+.coming-soon h2 {
+  font-size: var(--fs-lg);
+  margin: 6px 0 10px;
+}
+
+.coming-soon p:not(.eyebrow) {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  margin-bottom: 20px;
+}

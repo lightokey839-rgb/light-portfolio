@@ -1,0 +1,110 @@
+// Prisma schema for light-portfolio
+// Run `npx prisma migrate dev` after setting DATABASE_URL in .env
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// A single admin account. This project has exactly one admin — the
+/// portfolio owner — so there's no roles/permissions system, just a
+/// username + hashed password gate in front of /admin.
+model Admin {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  lastLoginAt  DateTime?
+
+  @@map("admins")
+}
+
+model Project {
+  id                String   @id @default(cuid())
+  title             String
+  slug              String   @unique
+  description       String
+  shortDescription  String?
+  imageUrl          String?
+  videoUrl          String?
+  liveUrl           String?
+  githubUrl         String?
+  category          String
+  featured          Boolean  @default(false)
+  published         Boolean  @default(true)
+  sortOrder         Int      @default(0)
+  technologies      Technology[] @relation("ProjectTechnologies")
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([category])
+  @@index([published, featured])
+  @@index([sortOrder])
+  @@map("projects")
+}
+
+model Technology {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  icon      String?
+  category  String
+  projects  Project[] @relation("ProjectTechnologies")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([category])
+  @@map("technologies")
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  icon        String?
+  featured    Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("services")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([read])
+  @@index([createdAt])
+  @@map("messages")
+}
+
+/// Single-row table holding the public-facing site content that used to
+/// be hardcoded in src/data/site.ts + About.tsx. The seed script creates
+/// the one row; the settings endpoint (Phase 5) always updates it in place.
+model SiteSettings {
+  id           String   @id @default(cuid())
+  name         String
+  title        String
+  bio          String
+  profileImage String?
+  email        String?
+  telegram     String?
+  twitter      String?
+  github       String?
+  linkedin     String?
+  updatedAt    DateTime @updatedAt
+
+  @@map("site_settings")
+}

@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+*.log
+
+# Uploaded media — keep the folder, ignore its contents
+uploads/*
+!uploads/.gitkeep

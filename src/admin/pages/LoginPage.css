@@ -1,0 +1,93 @@
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-0);
+  position: relative;
+}
+
+.admin-login::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 1px 1px,
+      var(--grain-dot) 1px,
+      transparent 0
+    );
+  background-size: 34px 34px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.admin-login__panel {
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+}
+
+.admin-login__form {
+  padding: 22px 22px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-login__prompt {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-2);
+  margin: 0 0 4px;
+}
+
+.admin-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-login__field span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.admin-login__field input {
+  background: var(--field-bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.admin-login__field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.admin-login__error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}
+
+.admin-login__form .btn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.admin-login__form .btn:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
