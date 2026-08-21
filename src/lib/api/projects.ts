@@ -37,6 +37,11 @@ export function getProject(id: string): Promise<{ project: Project }> {
   return apiRequest(`/projects/${id}`);
 }
 
+/** Used by the public case-study route (/projects/:slug). */
+export function getProjectBySlug(slug: string): Promise<{ project: Project }> {
+  return apiRequest(`/projects/slug/${slug}`);
+}
+
 export interface ProjectInput {
   title: string;
   description: string;
@@ -50,6 +55,11 @@ export interface ProjectInput {
   published: boolean;
   sortOrder: number;
   technologies: string[];
+  challenge: string | null;
+  solution: string | null;
+  results: string | null;
+  keyFeatures: string[];
+  gallery: string[];
 }
 
 export function createProject(input: ProjectInput): Promise<{ project: Project }> {

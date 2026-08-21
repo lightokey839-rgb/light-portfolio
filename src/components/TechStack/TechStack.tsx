@@ -67,14 +67,14 @@ export default function TechStack() {
     <section id="stack" className="section stack">
       <div className="container">
         <ScrollReveal>
-          <p className="eyebrow">Tech Stack</p>
+          <p className="eyebrow">03 / Technologies</p>
           <h2 className="section-heading">Tools I reach for, grouped by what they're for.</h2>
         </ScrollReveal>
 
         <div className="stack__grid">
           {groups.map((group, gi) => (
             <ScrollReveal key={group.category} delay={gi * 80} className="stack__group">
-              <h3 className="stack__group-title">{group.category}</h3>
+              <h3 className="stack__group-title mono-label">{group.category}</h3>
               <div className="stack__items">
                 {group.items.map((tech) => (
                   <div className="stack__item" key={tech.id}>

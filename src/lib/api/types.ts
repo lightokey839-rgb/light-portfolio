@@ -22,6 +22,11 @@ export interface Project {
   published: boolean;
   sortOrder: number;
   technologies: Technology[];
+  challenge: string | null;
+  solution: string | null;
+  results: string | null;
+  keyFeatures: string[];
+  gallery: string[];
   createdAt: string;
   updatedAt: string;
 }

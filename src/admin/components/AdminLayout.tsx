@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
+import { useAdminTheme } from "../context/AdminThemeContext";
+import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 import "./AdminLayout.css";
 
 const NAV_ITEMS = [
@@ -14,6 +16,7 @@ const NAV_ITEMS = [
 
 export default function AdminLayout() {
   const { admin, logout } = useAdminAuth();
+  const { theme, toggleTheme } = useAdminTheme();
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -61,9 +64,12 @@ export default function AdminLayout() {
             <span className="admin-sidebar__admin-dot" aria-hidden="true" />
             <span>{admin?.name ?? admin?.email}</span>
           </div>
-          <button type="button" className="btn btn-ghost btn-sm" onClick={handleLogout}>
-            Logout
-          </button>
+          <div className="admin-sidebar__footer-row">
+            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <button type="button" className="btn btn-ghost btn-sm" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         </div>
       </aside>
 
@@ -98,9 +104,12 @@ export default function AdminLayout() {
               <span className="admin-sidebar__admin-dot" aria-hidden="true" />
               <span>{admin?.name ?? admin?.email}</span>
             </div>
-            <button type="button" className="btn btn-ghost btn-sm" onClick={handleLogout}>
-              Logout
-            </button>
+            <div className="admin-sidebar__footer-row">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+              <button type="button" className="btn btn-ghost btn-sm" onClick={handleLogout}>
+                Logout
+              </button>
+            </div>
           </div>
         </div>
 

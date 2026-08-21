@@ -8,6 +8,7 @@ import {
   createProject,
   deleteProject,
   getProjectById,
+  getProjectBySlug,
   listProjects,
   updateProject,
 } from "./projects.service.js";
@@ -24,6 +25,28 @@ export default async function projectRoutes(fastify: FastifyInstance) {
     const adminId = await tryGetAdminId(request);
     return listProjects(fastify.prisma, query, Boolean(adminId));
   });
+
+  // GET /api/v1/projects/slug/:slug
+  // Public case-study pages (/projects/:slug on the frontend) look
+  // projects up by slug rather than the internal cuid — same
+  // published-visibility rule as the :id route above.
+  fastify.get<{ Params: { slug: string } }>(
+    "/projects/slug/:slug",
+    async (request, reply) => {
+      const adminId = await tryGetAdminId(request);
+      const project = await getProjectBySlug(
+        fastify.prisma,
+        request.params.slug,
+        Boolean(adminId)
+      );
+
+      if (!project) {
+        return sendError(reply, 404, "NOT_FOUND", "Project not found.");
+      }
+
+      return { project };
+    }
+  );
 
   // GET /api/v1/projects/:id
   fastify.get<{ Params: { id: string } }>("/projects/:id", async (request, reply) => {

@@ -63,6 +63,23 @@
   color: var(--text-2);
 }
 
+.admin-form__section-divider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.admin-form__section-divider span {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
 .admin-form__checkbox-row {
   display: flex;
   flex-wrap: wrap;

@@ -40,6 +40,18 @@ model Project {
   published         Boolean  @default(true)
   sortOrder         Int      @default(0)
   technologies      Technology[] @relation("ProjectTechnologies")
+
+  // Case-study fields (spec section 13). All optional/defaulted so this
+  // is a purely additive migration — existing rows and existing
+  // frontend code that doesn't reference them are unaffected. A project
+  // with none of these set just renders without a case-study section
+  // rather than a broken/empty one — see ProjectDetailPage.tsx.
+  challenge         String?      // the problem this project solves
+  solution          String?      // what was actually built
+  keyFeatures       String[]     @default([])
+  gallery           String[]     @default([])
+  results           String?      // real metrics/highlights only — never fabricated
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 

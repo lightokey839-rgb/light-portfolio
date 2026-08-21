@@ -37,14 +37,22 @@ export default function Services() {
           </ScrollReveal>
         </div>
 
-        <div className="services__grid">
+        <div className="services__list">
           {services.map((service, i) => (
-            <ScrollReveal key={service.id} delay={i * 90} className="service-card">
-              <span className="service-card__icon" aria-hidden="true">
+            <ScrollReveal key={service.id} delay={i * 70} className="service-row" as="div">
+              <span className="service-row__index big-number">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="service-row__body">
+                <h3 className="service-row__title">{service.title}</h3>
+                <p className="service-row__desc">{service.description}</p>
+              </div>
+              <span className="service-row__icon" aria-hidden="true">
                 {service.icon}
               </span>
-              <h3 className="service-card__title">{service.title}</h3>
-              <p className="service-card__desc">{service.description}</p>
+              <span className="service-row__arrow" aria-hidden="true">
+                →
+              </span>
             </ScrollReveal>
           ))}
         </div>

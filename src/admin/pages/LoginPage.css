@@ -28,6 +28,59 @@
   position: relative;
 }
 
+/* .terminal was referenced in the markup with no rules anywhere in the
+   codebase — the login panel rendered unstyled. Filled in here since
+   it's the block already being touched for the theme toggle.
+   (.glass is already defined globally in src/index.css.) */
+.terminal {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.terminal__bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.terminal__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal__dot--red {
+  background: #ff5f57;
+}
+
+.terminal__dot--yellow {
+  background: #febc2e;
+}
+
+.terminal__dot--green {
+  background: #28c840;
+}
+
+.terminal__title {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+
+.admin-login__theme-toggle {
+  margin-left: auto;
+}
+
+.terminal__prompt {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .admin-login__form {
   padding: 22px 22px 26px;
   display: flex;

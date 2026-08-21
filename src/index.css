@@ -1,42 +1,42 @@
 /* ============================================================
    LIGHT — design tokens
-   Premium, monochrome-led surfaces with one restrained cool
-   accent (electric blue → soft violet). Dark by default, with a
-   fully considered light theme — not an inverted palette.
+   Monochrome editorial system: near-black surface, oversized
+   type, thin hairline borders, monospace labels. One restrained
+   neutral accent — no color, no glow, no gradients.
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* surfaces — deep graphite / midnight navy, never pure black */
-  --bg-0: #0a0b0f;
-  --bg-1: #0e1015;
-  --bg-2: #14161d;
-  --bg-3: #1b1e28;
+  /* surfaces — near-black, editorial paper-on-black feel */
+  --bg-0: #050505;
+  --bg-1: #0a0a0a;
+  --bg-2: #0c0c0c;
+  --bg-3: #111111;
 
-  /* borders */
-  --border: rgba(240, 242, 248, 0.08);
-  --border-strong: rgba(240, 242, 248, 0.15);
+  /* borders — thin hairlines, the primary structural device */
+  --border: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.24);
 
   /* text */
-  --text-0: #f4f5f8;
-  --text-1: #a3a7b5;
-  --text-2: #6a6e7c;
+  --text-0: #f5f5f5;
+  --text-1: #8a8a8a;
+  --text-2: #4a4a4a;
 
-  /* accent — electric blue, restrained, used deliberately */
-  --accent: #7c93ff;
-  --accent-dim: #6480f2;
-  --accent-ink: #0a0d1c;
-  --accent-soft: rgba(124, 147, 255, 0.12);
-  --accent-glow: rgba(124, 147, 255, 0.28);
+  /* accent — restrained near-white, used for emphasis only, never color */
+  --accent: #f5f5f5;
+  --accent-dim: #cfcfcf;
+  --accent-ink: #050505;
+  --accent-soft: rgba(245, 245, 245, 0.06);
+  --accent-glow: rgba(245, 245, 245, 0.1);
 
-  /* secondary accent — soft violet, for tags/categories/data only */
-  --accent-2: #b79cff;
-  --accent-2-soft: rgba(183, 156, 255, 0.12);
+  /* secondary accent — kept as a token for compatibility, same neutral family */
+  --accent-2: #9a9a9a;
+  --accent-2-soft: rgba(154, 154, 154, 0.1);
 
-  /* semantic — success stays legible without borrowing the accent */
-  --success: #4ade9c;
-  --success-soft: rgba(74, 222, 156, 0.12);
-  --success-border: rgba(74, 222, 156, 0.3);
+  /* semantic — functional only (form states), never decorative */
+  --success: #7fd8a6;
+  --success-soft: rgba(127, 216, 166, 0.1);
+  --success-border: rgba(127, 216, 166, 0.28);
 
   --danger: #ff8a83;
   --danger-soft: rgba(255, 95, 87, 0.1);
@@ -59,26 +59,30 @@
   --fs-2xl: clamp(1.9rem, 1.6rem + 1.2vw, 2.6rem);
   --fs-3xl: clamp(2.4rem, 2rem + 2vw, 3.4rem);
   --fs-4xl: clamp(2.8rem, 2rem + 4.5vw, 5rem);
+  /* oversized editorial display sizes — hero + big section headlines */
+  --fs-hero: clamp(3.4rem, 2rem + 9vw, 9.5rem);
+  --fs-display: clamp(2.6rem, 1.6rem + 4.6vw, 5.6rem);
 
-  /* geometry */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+  /* geometry — sharper, more rectangular than a typical SaaS UI */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 22px;
   --radius-full: 999px;
-  --container: 1180px;
+  --container: 1240px;
 
   /* motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.18s;
   --dur-med: 0.4s;
 
-  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
-    0 24px 48px -28px rgba(0, 0, 0, 0.7);
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset,
+    0 24px 48px -28px rgba(0, 0, 0, 0.85);
 
   /* elevated / translucent surfaces (navbar, mobile menu overlay) */
-  --nav-surface: rgba(14, 16, 21, 0.72);
-  --overlay-surface: rgba(10, 11, 15, 0.97);
-  --field-bg: rgba(255, 255, 255, 0.03);
+  --nav-surface: rgba(5, 5, 5, 0.78);
+  --overlay-surface: rgba(5, 5, 5, 0.98);
+  --field-bg: rgba(255, 255, 255, 0.02);
   --surface-hairline: rgba(255, 255, 255, 0.018);
 
   /* ---- semantic aliases (same values, product-spec token names) ---- */
@@ -91,31 +95,31 @@
 }
 
 /* ============================================================
-   light theme — an intentional design, not an inversion
+   light theme — an editorial paper surface, not an inversion
    ============================================================ */
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg-0: #f8f6f2;
-  --bg-1: #fdfcfa;
+  --bg-0: #f7f6f3;
+  --bg-1: #fbfaf8;
   --bg-2: #ffffff;
-  --bg-3: #f1eee7;
+  --bg-3: #efeee9;
 
-  --border: rgba(20, 22, 32, 0.08);
-  --border-strong: rgba(20, 22, 32, 0.14);
+  --border: rgba(10, 10, 10, 0.12);
+  --border-strong: rgba(10, 10, 10, 0.22);
 
-  --text-0: #15171f;
-  --text-1: #4c4f5c;
-  --text-2: #82848f;
+  --text-0: #0e0e0e;
+  --text-1: #55555a;
+  --text-2: #92928d;
 
-  --accent: #4655c7;
-  --accent-dim: #3846ad;
-  --accent-ink: #ffffff;
-  --accent-soft: rgba(70, 85, 199, 0.08);
-  --accent-glow: rgba(70, 85, 199, 0.16);
+  --accent: #0e0e0e;
+  --accent-dim: #2a2a2a;
+  --accent-ink: #f7f6f3;
+  --accent-soft: rgba(14, 14, 14, 0.05);
+  --accent-glow: rgba(14, 14, 14, 0.08);
 
-  --accent-2: #7a5cfa;
-  --accent-2-soft: rgba(122, 92, 250, 0.08);
+  --accent-2: #55555a;
+  --accent-2-soft: rgba(85, 85, 90, 0.08);
 
   --success: #1f9d67;
   --success-soft: rgba(31, 157, 103, 0.1);
@@ -125,15 +129,15 @@
   --danger-soft: rgba(195, 67, 63, 0.08);
   --danger-border: rgba(195, 67, 63, 0.24);
 
-  --grain-dot: rgba(20, 22, 32, 0.035);
+  --grain-dot: rgba(10, 10, 10, 0.035);
 
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
-    0 20px 40px -26px rgba(20, 22, 32, 0.14);
+    0 20px 40px -26px rgba(20, 22, 32, 0.12);
 
-  --nav-surface: rgba(253, 252, 250, 0.78);
-  --overlay-surface: rgba(248, 246, 242, 0.97);
-  --field-bg: rgba(20, 22, 32, 0.035);
-  --surface-hairline: rgba(20, 22, 32, 0.025);
+  --nav-surface: rgba(251, 250, 248, 0.82);
+  --overlay-surface: rgba(247, 246, 243, 0.98);
+  --field-bg: rgba(10, 10, 10, 0.03);
+  --surface-hairline: rgba(10, 10, 10, 0.025);
 }
 
 * {
@@ -157,7 +161,7 @@ body {
   transition: background-color var(--dur-med) var(--ease), color var(--dur-med) var(--ease);
 }
 
-/* subtle base texture so flat sections don't feel empty, in either theme */
+/* subtle grain so flat black sections don't feel like dead pixels */
 body::before {
   content: "";
   position: fixed;
@@ -176,8 +180,8 @@ h4 {
   font-family: var(--font-display);
   color: var(--text-0);
   margin: 0;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -214,9 +218,9 @@ video {
 
 /* focus visibility — never suppressed */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 1.5px solid var(--text-0);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: 2px;
 }
 
 /* ============================================================
@@ -226,54 +230,61 @@ video {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
 }
 
 .section {
   position: relative;
-  padding: 128px 0;
+  padding: 148px 0;
   z-index: 1;
+  border-top: 1px solid var(--border);
 }
 
 @media (max-width: 768px) {
   .section {
     padding: 88px 0;
   }
+  .container {
+    padding: 0 20px;
+  }
 }
 
+/* editorial "01 / LABEL" numbered eyebrow — the recurring section marker */
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  font-family: var(--font-body);
-  font-weight: 600;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-weight: 500;
   font-size: 0.78rem;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
+  color: var(--text-1);
+  margin-bottom: 22px;
 }
 
 .eyebrow::before {
   content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px 2px var(--accent-glow);
+  width: 22px;
+  height: 1px;
+  background: var(--text-1);
 }
 
 .section-heading {
-  font-size: var(--fs-3xl);
-  max-width: 640px;
-  font-weight: 700;
+  font-size: var(--fs-display);
+  max-width: 780px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 }
 
 .section-sub {
-  font-size: var(--fs-md);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
   color: var(--text-1);
-  max-width: 560px;
-  margin-top: 18px;
+  max-width: 46ch;
+  margin-top: 20px;
+  line-height: 1.7;
 }
 
 .section-head-row {
@@ -281,35 +292,37 @@ video {
   justify-content: space-between;
   align-items: flex-end;
   gap: 32px;
-  margin-bottom: 64px;
+  margin-bottom: 72px;
 }
 
 @media (max-width: 860px) {
   .section-head-row {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 48px;
+    gap: 24px;
+    margin-bottom: 52px;
   }
 }
 
 /* ============================================================
-   buttons
+   buttons — thin border, mono uppercase label, invert on hover
    ============================================================ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 26px;
-  border-radius: var(--radius-full);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: var(--fs-sm);
+  padding: 15px 28px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   border: 1px solid transparent;
   transition: transform var(--dur-fast) var(--ease),
     background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
-    box-shadow var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+    color var(--dur-fast) var(--ease);
   white-space: nowrap;
 }
 
@@ -320,12 +333,13 @@ video {
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
-  box-shadow: 0 0 0 0 var(--accent-glow);
+  border-color: var(--accent);
 }
 
 .btn-primary:hover {
-  background: var(--accent-dim);
-  box-shadow: 0 0 32px 0 var(--accent-glow);
+  background: transparent;
+  color: var(--text-0);
+  border-color: var(--border-strong);
 }
 
 .btn-ghost {
@@ -335,8 +349,9 @@ video {
 }
 
 .btn-ghost:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--text-0);
+  color: var(--text-0);
+  background: var(--field-bg);
 }
 
 .btn-danger {
@@ -351,8 +366,7 @@ video {
 }
 
 .btn-sm {
-  padding: 10px 18px;
-  font-size: var(--fs-xs);
+  padding: 11px 20px;
 }
 
 /* ============================================================
@@ -371,21 +385,40 @@ video {
 }
 
 /* ============================================================
-   shared: glass surface
+   shared: glass surface — kept subtle, no heavy blur/gradient
    ============================================================ */
 .glass {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.045),
-    rgba(255, 255, 255, 0.015)
-  );
+  background: var(--bg-2);
   border: 1px solid var(--border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
-:root[data-theme="light"] .glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.45));
+:root[data-theme="light"] .glass,
+.admin-root[data-admin-theme="light"] .glass {
+  background: var(--bg-2);
+}
+
+/* ============================================================
+   shared editorial primitives
+   ============================================================ */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--border);
+  border: none;
+  width: 100%;
+}
+
+.big-number {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--text-2);
 }
 
 /* ============================================================
@@ -427,6 +460,33 @@ video {
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* entrance for the wordmark — Navbar.css and Hero.css both use this */
+@keyframes logo-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* slow drift for background field visuals (Hero, section atmospheres) */
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-1.2%, -0.8%, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
   }
 }
 

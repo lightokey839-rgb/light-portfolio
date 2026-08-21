@@ -4,8 +4,8 @@ import argon2 from "argon2";
 
 const prisma = new PrismaClient();
 
-// Mirrors src/data/technologies.ts so the DB starts in sync with the
-// content that's currently hardcoded on the live site.
+// Seed data for a fresh install — the frontend fetches technologies from
+// the API, so this is the only place these need to be defined.
 const TECHNOLOGIES: { name: string; category: string }[] = [
   { name: "HTML", category: "Frontend" },
   { name: "CSS", category: "Frontend" },
@@ -30,39 +30,41 @@ const TECHNOLOGIES: { name: string; category: string }[] = [
   { name: "VS Code", category: "Tools" },
 ];
 
-// Mirrors src/data/services.ts
+// Seed data for a fresh install — the frontend fetches services from the
+// API, so this is the only place these need to be defined.
 const SERVICES: { title: string; description: string; icon: string; sortOrder: number }[] = [
   {
     title: "Web3 Websites",
     description:
-      "Modern, responsive websites and landing pages for tokens, projects, and communities.",
+      "High-converting websites and landing pages that build trust fast for token projects, startups, and communities.",
     icon: "🌐",
     sortOrder: 0,
   },
   {
     title: "Telegram Bots",
     description:
-      "Community bots, task/quest systems, automation, and Web3-focused Telegram tools.",
+      "Community automation, task/quest systems, and rewards — built to run themselves day to day.",
     icon: "🤖",
     sortOrder: 1,
   },
   {
     title: "Telegram Mini Apps",
     description:
-      "Interactive Mini Apps designed for Web3 communities, campaigns, rewards, and engagement.",
+      "Interactive apps for tasks, rewards, and daily engagement — built directly inside Telegram.",
     icon: "📱",
     sortOrder: 2,
   },
   {
     title: "Web3 Tools & Community Systems",
     description:
-      "Custom tools and systems that help Web3 projects manage tasks, users, campaigns, and communities.",
+      "Dashboards, task systems, and custom infrastructure that keep a growing community organized.",
     icon: "⚡",
     sortOrder: 3,
   },
 ];
 
-// Mirrors src/data/projects.ts — technologies reference the names seeded above
+// Seed data for a fresh install — the frontend fetches projects from the
+// API, so this is the only place these need to be defined.
 const PROJECTS: {
   title: string;
   slug: string;
@@ -70,6 +72,10 @@ const PROJECTS: {
   description: string;
   sortOrder: number;
   technologies: string[];
+  featured?: boolean;
+  challenge?: string;
+  solution?: string;
+  keyFeatures?: string[];
 }[] = [
   {
     title: "Web3 / Memecoin Website",
@@ -79,6 +85,16 @@ const PROJECTS: {
       "A launch-ready website for a token project — built to establish trust, explain the concept clearly, and give the community a home before and after launch.",
     sortOrder: 0,
     technologies: ["React", "TypeScript", "Vite"],
+    featured: true,
+    challenge:
+      "The project needed a home before launch that could explain the token, build trust with a skeptical audience, and give the community somewhere to land — all on a tight timeline.",
+    solution:
+      "A fast, single-page site covering the concept, tokenomics, and roadmap, with a clear path into the project's Telegram and socials rather than a wall of unexplained jargon.",
+    keyFeatures: [
+      "Tokenomics and roadmap laid out clearly for a non-technical audience",
+      "Fast load times on a lightweight React + Vite build",
+      "Direct links into the community's Telegram and socials",
+    ],
   },
   {
     title: "Telegram Task & Quest System",
@@ -88,6 +104,16 @@ const PROJECTS: {
       "A Telegram bot that runs task and quest campaigns for a Web3 community — handling verification, points, and day-to-day engagement automatically.",
     sortOrder: 1,
     technologies: ["Node.js", "Telegram Bot API", "PostgreSQL"],
+    featured: true,
+    challenge:
+      "Running community quest campaigns by hand doesn't scale — verifying task completion and tracking points manually eats time the community team doesn't have.",
+    solution:
+      "A Telegram bot that defines tasks, verifies completion automatically where possible, and tracks points per member in Postgres, so campaigns run themselves day to day.",
+    keyFeatures: [
+      "Automated task verification",
+      "Persistent per-member points tracking",
+      "Admin commands to launch and adjust campaigns without redeploying",
+    ],
   },
   {
     title: "Telegram Web3 Mini App",
@@ -159,16 +185,24 @@ async function seedServices() {
 
 async function seedProjects() {
   for (const project of PROJECTS) {
-    const { technologies, ...projectData } = project;
+    const { technologies, featured, challenge, solution, keyFeatures, ...projectData } = project;
+    const caseStudyData = {
+      featured: featured ?? false,
+      challenge: challenge ?? null,
+      solution: solution ?? null,
+      keyFeatures: keyFeatures ?? [],
+    };
+
     await prisma.project.upsert({
       where: { slug: project.slug },
       update: {
         ...projectData,
+        ...caseStudyData,
         technologies: { set: [], connect: technologies.map((name) => ({ name })) },
       },
       create: {
         ...projectData,
-        featured: false,
+        ...caseStudyData,
         published: true,
         technologies: { connect: technologies.map((name) => ({ name })) },
       },

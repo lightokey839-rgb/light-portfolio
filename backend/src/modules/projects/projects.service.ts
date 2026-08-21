@@ -160,6 +160,27 @@ export async function getProjectById(
   return project;
 }
 
+/**
+ * Same visibility rule as getProjectById, keyed by slug instead — used by
+ * the public case-study route (/projects/:slug) so project detail pages
+ * don't need to expose the internal cuid in the URL.
+ */
+export async function getProjectBySlug(
+  prisma: PrismaClient,
+  slug: string,
+  isAdmin: boolean
+): Promise<ProjectWithTechnologies | null> {
+  const project = await prisma.project.findUnique({
+    where: { slug },
+    include: { technologies: true },
+  });
+
+  if (!project) return null;
+  if (!isAdmin && !project.published) return null;
+
+  return project;
+}
+
 export async function createProject(
   prisma: PrismaClient,
   input: CreateProjectInput
@@ -185,6 +206,11 @@ export async function createProject(
       published: input.published ?? true,
       sortOrder: input.sortOrder ?? 0,
       technologies: { connect: technologyConnections },
+      challenge: normalizeNullable(input.challenge),
+      solution: normalizeNullable(input.solution),
+      results: normalizeNullable(input.results),
+      keyFeatures: input.keyFeatures ?? [],
+      gallery: input.gallery ?? [],
     },
     include: { technologies: true },
   });
@@ -215,6 +241,12 @@ export async function updateProject(
     const technologyConnections = await resolveTechnologyConnections(prisma, input.technologies);
     data.technologies = { set: [], connect: technologyConnections };
   }
+
+  if (input.challenge !== undefined) data.challenge = normalizeNullable(input.challenge);
+  if (input.solution !== undefined) data.solution = normalizeNullable(input.solution);
+  if (input.results !== undefined) data.results = normalizeNullable(input.results);
+  if (input.keyFeatures !== undefined) data.keyFeatures = input.keyFeatures;
+  if (input.gallery !== undefined) data.gallery = input.gallery;
 
   return prisma.project.update({
     where: { id },

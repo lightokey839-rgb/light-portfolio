@@ -6,8 +6,11 @@ import Projects from "../components/Projects/Projects";
 import TechStack from "../components/TechStack/TechStack";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
+import { useScrollToHash } from "../hooks/useScrollToHash";
 
 export default function PortfolioPage() {
+  useScrollToHash();
+
   return (
     <>
       <Navbar />

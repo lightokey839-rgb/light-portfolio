@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AdminPageHeader } from "../components/AdminPageHeader";
 import { LoadingBlock, ErrorState } from "../components/AsyncStates";
 import { ImageUploadField } from "../components/ImageUploadField";
+import { GalleryUploadField } from "../components/GalleryUploadField";
 import { TagInput } from "../components/TagInput";
 import { useToast } from "../components/ToastProvider";
 import { createProject, getProject, updateProject, type ProjectInput } from "../../lib/api/projects";
@@ -22,6 +23,11 @@ interface FormState {
   published: boolean;
   sortOrder: string;
   technologies: string[];
+  challenge: string;
+  solution: string;
+  results: string;
+  keyFeatures: string[];
+  gallery: string[];
 }
 
 const EMPTY_FORM: FormState = {
@@ -37,6 +43,11 @@ const EMPTY_FORM: FormState = {
   published: true,
   sortOrder: "0",
   technologies: [],
+  challenge: "",
+  solution: "",
+  results: "",
+  keyFeatures: [],
+  gallery: [],
 };
 
 function toInput(form: FormState): ProjectInput {
@@ -53,6 +64,11 @@ function toInput(form: FormState): ProjectInput {
     published: form.published,
     sortOrder: Number.parseInt(form.sortOrder, 10) || 0,
     technologies: form.technologies,
+    challenge: form.challenge.trim() || null,
+    solution: form.solution.trim() || null,
+    results: form.results.trim() || null,
+    keyFeatures: form.keyFeatures,
+    gallery: form.gallery,
   };
 }
 
@@ -91,6 +107,11 @@ export default function ProjectFormPage() {
           published: project.published,
           sortOrder: String(project.sortOrder),
           technologies: project.technologies.map((t) => t.name),
+          challenge: project.challenge ?? "",
+          solution: project.solution ?? "",
+          results: project.results ?? "",
+          keyFeatures: project.keyFeatures,
+          gallery: project.gallery,
         });
       })
       .catch((err) => {
@@ -268,6 +289,60 @@ export default function ProjectFormPage() {
           <p className="admin-form__hint">
             Matches existing technologies by name (case-insensitive) or creates a new one.
           </p>
+        </label>
+
+        <div className="admin-form__section-divider">
+          <span>Case Study</span>
+          <p className="admin-form__hint">
+            Optional. Only sections you fill in appear on the project's detail page —
+            leave any of these blank and that section just doesn't render.
+          </p>
+        </div>
+
+        <label className="admin-form__field">
+          <span>The Challenge</span>
+          <textarea
+            placeholder="What problem did this project solve?"
+            value={form.challenge}
+            onChange={(e) => updateField("challenge", e.target.value)}
+          />
+        </label>
+
+        <label className="admin-form__field">
+          <span>The Solution</span>
+          <textarea
+            placeholder="What did you actually build?"
+            value={form.solution}
+            onChange={(e) => updateField("solution", e.target.value)}
+          />
+        </label>
+
+        <label className="admin-form__field">
+          <span>Key Features</span>
+          <TagInput
+            value={form.keyFeatures}
+            onChange={(tags) => updateField("keyFeatures", tags)}
+            placeholder="Type a feature and press Enter…"
+            maxTags={20}
+          />
+        </label>
+
+        <label className="admin-form__field">
+          <span>Gallery</span>
+          <GalleryUploadField
+            value={form.gallery}
+            onChange={(urls) => updateField("gallery", urls)}
+            onError={(message) => setFormError(message)}
+          />
+        </label>
+
+        <label className="admin-form__field">
+          <span>Results &amp; Highlights</span>
+          <textarea
+            placeholder="Real metrics or outcomes only — leave blank if there's nothing concrete to report yet."
+            value={form.results}
+            onChange={(e) => updateField("results", e.target.value)}
+          />
         </label>
 
         <div className="admin-form__checkbox-row">

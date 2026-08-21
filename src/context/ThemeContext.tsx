@@ -7,9 +7,35 @@ import {
   type ReactNode,
 } from "react";
 
+// PUBLIC SITE ONLY. This context/provider must never wrap the admin app —
+// see src/admin/context/AdminThemeContext.tsx for the admin's independent
+// equivalent. The two intentionally do not share a storage key, a context,
+// or the "data-theme" attribute's scope, so toggling one can never affect
+// the other. See PortfolioPage.tsx / AdminApp.tsx for where each is mounted.
+
 export type Theme = "dark" | "light";
 
-const STORAGE_KEY = "light-portfolio-theme";
+const STORAGE_KEY = "portfolio-theme";
+// Previous key name, kept only so returning visitors don't get bounced back
+// to a default theme after this rename. Safe to delete a few months out.
+const LEGACY_STORAGE_KEY = "light-portfolio-theme";
+
+function readStoredTheme(): Theme | null {
+  try {
+    const current = localStorage.getItem(STORAGE_KEY);
+    if (current === "light" || current === "dark") return current;
+
+    const legacy = localStorage.getItem(LEGACY_STORAGE_KEY);
+    if (legacy === "light" || legacy === "dark") {
+      // Migrate forward so future reads don't need the legacy fallback.
+      localStorage.setItem(STORAGE_KEY, legacy);
+      return legacy;
+    }
+  } catch {
+    // Private browsing / storage disabled.
+  }
+  return null;
+}
 
 interface ThemeContextValue {
   theme: Theme;
@@ -43,12 +69,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // If the visitor never explicitly chose a theme on this device, keep
   // following the OS preference as it changes.
   useEffect(() => {
-    let explicit = false;
-    try {
-      explicit = localStorage.getItem(STORAGE_KEY) !== null;
-    } catch {
-      explicit = false;
-    }
+    const explicit = readStoredTheme() !== null;
     if (explicit) return;
 
     const media = window.matchMedia("(prefers-color-scheme: light)");

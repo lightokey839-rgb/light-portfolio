@@ -1,11 +1,14 @@
 import { useState, type FormEvent } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAdminAuth } from "../context/AdminAuthContext";
+import { useAdminTheme } from "../context/AdminThemeContext";
 import { ApiError } from "../../lib/api/client";
+import ThemeToggle from "../../components/ThemeToggle/ThemeToggle";
 import "./LoginPage.css";
 
 export default function LoginPage() {
   const { status, login } = useAdminAuth();
+  const { theme, toggleTheme } = useAdminTheme();
   const location = useLocation();
 
   const [email, setEmail] = useState("");
@@ -47,6 +50,7 @@ export default function LoginPage() {
           <span className="terminal__dot terminal__dot--yellow" />
           <span className="terminal__dot terminal__dot--green" />
           <span className="terminal__title">admin-login.sh</span>
+          <ThemeToggle theme={theme} onToggle={toggleTheme} className="admin-login__theme-toggle" />
         </div>
 
         <form className="admin-login__form" onSubmit={handleSubmit}>

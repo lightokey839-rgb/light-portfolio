@@ -4,13 +4,9 @@ async function main() {
   const fastify = await buildApp();
 
   try {
-    await fastify.listen({
-      port: env.PORT,
-      host: "0.0.0.0",
-    });
-
-    fastify.log.info(`API listening on port ${env.PORT}`);
-    fastify.log.info(`Health check: /api/v1/health`);
+    await fastify.listen({ port: env.PORT, host: "0.0.0.0" });
+    fastify.log.info(`API listening on http://localhost:${env.PORT}/api/v1`);
+    fastify.log.info(`Health check: http://localhost:${env.PORT}/api/v1/health`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
@@ -27,6 +23,7 @@ async function main() {
 }
 
 main().catch((err) => {
+  // eslint-disable-next-line no-console
   console.error("Fatal error during startup:", err);
   process.exit(1);
 });

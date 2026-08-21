@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
+import { AdminThemeProvider } from "./context/AdminThemeContext";
 import { ToastProvider } from "./components/ToastProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
@@ -17,30 +18,32 @@ import AdminNotFoundPage from "./pages/AdminNotFoundPage";
 
 export default function AdminApp() {
   return (
-    <ToastProvider>
-      <AdminAuthProvider>
-        <Routes>
-          <Route path="login" element={<LoginPage />} />
+    <AdminThemeProvider>
+      <ToastProvider>
+        <AdminAuthProvider>
+          <Routes>
+            <Route path="login" element={<LoginPage />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route element={<AdminLayout />}>
-              <Route index element={<DashboardPage />} />
-              <Route path="projects" element={<ProjectsListPage />} />
-              <Route path="projects/new" element={<ProjectFormPage />} />
-              <Route path="projects/:id/edit" element={<ProjectFormPage />} />
-              <Route path="services" element={<ServicesListPage />} />
-              <Route path="services/new" element={<ServiceFormPage />} />
-              <Route path="services/:id/edit" element={<ServiceFormPage />} />
-              <Route path="technologies" element={<TechnologiesListPage />} />
-              <Route path="technologies/new" element={<TechnologyFormPage />} />
-              <Route path="technologies/:id/edit" element={<TechnologyFormPage />} />
-              <Route path="messages" element={<MessagesListPage />} />
-              <Route path="settings" element={<SettingsPage />} />
-              <Route path="*" element={<AdminNotFoundPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AdminLayout />}>
+                <Route index element={<DashboardPage />} />
+                <Route path="projects" element={<ProjectsListPage />} />
+                <Route path="projects/new" element={<ProjectFormPage />} />
+                <Route path="projects/:id/edit" element={<ProjectFormPage />} />
+                <Route path="services" element={<ServicesListPage />} />
+                <Route path="services/new" element={<ServiceFormPage />} />
+                <Route path="services/:id/edit" element={<ServiceFormPage />} />
+                <Route path="technologies" element={<TechnologiesListPage />} />
+                <Route path="technologies/new" element={<TechnologyFormPage />} />
+                <Route path="technologies/:id/edit" element={<TechnologyFormPage />} />
+                <Route path="messages" element={<MessagesListPage />} />
+                <Route path="settings" element={<SettingsPage />} />
+                <Route path="*" element={<AdminNotFoundPage />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </AdminAuthProvider>
-    </ToastProvider>
+          </Routes>
+        </AdminAuthProvider>
+      </ToastProvider>
+    </AdminThemeProvider>
   );
 }

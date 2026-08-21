@@ -1,11 +1,12 @@
 import { useState, type FormEvent } from "react";
-import { socials } from "../../data/site";
+import { useSiteSettings } from "../../context/SiteSettingsContext";
 import { sendContactMessage } from "../../lib/api/messages";
 import { ApiError } from "../../lib/api/client";
 import ScrollReveal from "../ScrollReveal/ScrollReveal";
 import "./Contact.css";
 
 export default function Contact() {
+  const settings = useSiteSettings();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -46,26 +47,57 @@ export default function Contact() {
   return (
     <section id="contact" className="section contact">
       <div className="container">
-        <ScrollReveal className="contact__panel glass">
-          <p className="eyebrow">Contact</p>
-          <h2 className="contact__headline">Have a Web3 project in mind?</h2>
-          <p className="contact__sub">
-            Let's turn your idea into something people can actually use.
-          </p>
+        <ScrollReveal className="contact__panel">
+          <p className="eyebrow">04 / Contact</p>
+          <h2 className="contact__headline">
+            <span>Let's Build</span>
+            <span className="contact__headline-dim">Something Useful.</span>
+          </h2>
+          <p className="contact__sub">Tell me what you're working on and let's talk.</p>
 
           <div className="contact__actions">
-            <a
-              href={socials.telegram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-primary"
-            >
-              Contact Me
-            </a>
+            {settings.telegram ? (
+              <a
+                href={settings.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Contact Me
+              </a>
+            ) : settings.email ? (
+              <a href={`mailto:${settings.email}`} className="btn btn-primary">
+                Email Me
+              </a>
+            ) : null}
             <a href="#projects" className="btn btn-ghost">
               View Projects
             </a>
           </div>
+
+          {(settings.telegram || settings.email || settings.github) && (
+            <ul className="contact__channels">
+              {settings.telegram && (
+                <li>
+                  <a href={settings.telegram} target="_blank" rel="noopener noreferrer">
+                    Telegram ↗
+                  </a>
+                </li>
+              )}
+              {settings.email && (
+                <li>
+                  <a href={`mailto:${settings.email}`}>{settings.email}</a>
+                </li>
+              )}
+              {settings.github && (
+                <li>
+                  <a href={settings.github} target="_blank" rel="noopener noreferrer">
+                    GitHub ↗
+                  </a>
+                </li>
+              )}
+            </ul>
+          )}
 
           <div className="contact__divider">
             <span>or send a message</span>

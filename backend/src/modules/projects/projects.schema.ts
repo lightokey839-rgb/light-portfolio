@@ -23,6 +23,28 @@ const urlLike = z
   .nullable()
   .optional();
 
+const nullableText = (max: number) => z.string().trim().max(max).nullable().optional();
+
+const stringList = (maxItems: number, maxItemLen: number) =>
+  z
+    .array(z.string().trim().min(1).max(maxItemLen))
+    .max(maxItems)
+    .optional();
+
+const galleryUrls = z
+  .array(
+    z
+      .string()
+      .trim()
+      .max(500)
+      .refine(
+        (v) => /^(https?:\/\/|\/)/i.test(v),
+        "Each gallery image must be a full URL (https://…) or an uploaded file path (starting with /)."
+      )
+  )
+  .max(12, "Gallery can have at most 12 images.")
+  .optional();
+
 export const projectBaseSchema = z.object({
   title: z.string().trim().min(2, "Title is required.").max(120),
   description: z.string().trim().min(10, "Description is required."),
@@ -36,6 +58,15 @@ export const projectBaseSchema = z.object({
   published: z.boolean().optional().default(true),
   sortOrder: z.coerce.number().int().optional().default(0),
   technologies: technologyNames,
+
+  // Case-study fields — all optional. A project can be published with
+  // none of these set; the detail page just omits that section rather
+  // than showing empty/fabricated content (spec section 13).
+  challenge: nullableText(2000),
+  solution: nullableText(2000),
+  results: nullableText(1000),
+  keyFeatures: stringList(20, 160),
+  gallery: galleryUrls,
 });
 
 /** POST /projects — title, description, category are required. */
