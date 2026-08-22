@@ -170,18 +170,8 @@
 }
 
 /* ---------- subtle profile chip — not a dominant hero photo ---------- */
-.hero__portrait-chip {
-  position: absolute;
-  z-index: 2;
-  right: 32px;
-  top: 172px;
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--border-strong);
-  filter: grayscale(1) contrast(1.05);
-  opacity: 0.85;
+ .hero__portrait-chip { position: absolute; z-index: 2; right: 32px; top: 150px; width: 110px; height: 110px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-strong); opacity: 1;
+
 }
 
 .hero__portrait-img {
