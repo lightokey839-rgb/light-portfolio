@@ -1,51 +1,58 @@
 /* ============================================================
    LIGHT — design tokens
-   Monochrome editorial system: near-black surface, oversized
-   type, thin hairline borders, monospace labels. One restrained
-   neutral accent — no color, no glow, no gradients.
+   "A network of light in the dark" — deep navy-black voids,
+   electric-blue signal, thin hairlines carrying real structure.
+   Same token names the whole codebase already depends on; the
+   values move from monochrome to an atmospheric Web3 palette.
    ============================================================ */
 :root {
   color-scheme: dark;
 
-  /* surfaces — near-black, editorial paper-on-black feel */
-  --bg-0: #050505;
-  --bg-1: #0a0a0a;
-  --bg-2: #0c0c0c;
-  --bg-3: #111111;
+  /* surfaces — deep space-navy, not pure black */
+  --bg-0: #05070d;
+  --bg-1: #080b15;
+  --bg-2: #0b0f1e;
+  --bg-3: #101731;
 
-  /* borders — thin hairlines, the primary structural device */
-  --border: rgba(255, 255, 255, 0.12);
-  --border-strong: rgba(255, 255, 255, 0.24);
+  /* borders — hairlines with a hint of signal-blue */
+  --border: rgba(148, 172, 255, 0.14);
+  --border-strong: rgba(168, 190, 255, 0.3);
 
   /* text */
-  --text-0: #f5f5f5;
-  --text-1: #8a8a8a;
-  --text-2: #4a4a4a;
+  --text-0: #f3f5fc;
+  --text-1: #8991ac;
+  --text-2: #4c5270;
 
-  /* accent — restrained near-white, used for emphasis only, never color */
-  --accent: #f5f5f5;
-  --accent-dim: #cfcfcf;
-  --accent-ink: #050505;
-  --accent-soft: rgba(245, 245, 245, 0.06);
-  --accent-glow: rgba(245, 245, 245, 0.1);
+  /* accent — electric blue. LIGHT's signal color. */
+  --accent: #4d7dff;
+  --accent-dim: #345fe0;
+  --accent-ink: #04050c;
+  --accent-soft: rgba(77, 125, 255, 0.1);
+  --accent-glow: rgba(77, 125, 255, 0.5);
 
-  /* secondary accent — kept as a token for compatibility, same neutral family */
-  --accent-2: #9a9a9a;
-  --accent-2-soft: rgba(154, 154, 154, 0.1);
+  /* secondary accent — cyan, used for data/telemetry moments */
+  --accent-2: #2fd8e8;
+  --accent-2-soft: rgba(47, 216, 232, 0.1);
+  --accent-2-glow: rgba(47, 216, 232, 0.45);
 
-  /* semantic — functional only (form states), never decorative */
-  --success: #7fd8a6;
-  --success-soft: rgba(127, 216, 166, 0.1);
-  --success-border: rgba(127, 216, 166, 0.28);
+  /* tertiary accent — violet, reserved for the Lab's experimental register */
+  --accent-3: #8b7bff;
+  --accent-3-soft: rgba(139, 123, 255, 0.1);
+  --accent-3-glow: rgba(139, 123, 255, 0.45);
 
-  --danger: #ff8a83;
+  /* semantic — functional only (form/status states), never decorative */
+  --success: #52e2a0;
+  --success-soft: rgba(82, 226, 160, 0.1);
+  --success-border: rgba(82, 226, 160, 0.28);
+
+  --danger: #ff7a72;
   --danger-soft: rgba(255, 95, 87, 0.1);
   --danger-border: rgba(255, 95, 87, 0.32);
 
   /* decorative grain dot on the base background */
-  --grain-dot: rgba(255, 255, 255, 0.035);
+  --grain-dot: rgba(148, 172, 255, 0.04);
 
-  /* type */
+  /* type — kept: display/body/mono already reads as technical + editorial */
   --font-display: "Space Grotesk", "Segoe UI", sans-serif;
   --font-body: "Inter", "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
@@ -59,31 +66,40 @@
   --fs-2xl: clamp(1.9rem, 1.6rem + 1.2vw, 2.6rem);
   --fs-3xl: clamp(2.4rem, 2rem + 2vw, 3.4rem);
   --fs-4xl: clamp(2.8rem, 2rem + 4.5vw, 5rem);
-  /* oversized editorial display sizes — hero + big section headlines */
-  --fs-hero: clamp(3.4rem, 2rem + 9vw, 9.5rem);
-  --fs-display: clamp(2.6rem, 1.6rem + 4.6vw, 5.6rem);
+  --fs-hero: clamp(3.2rem, 1.9rem + 8.4vw, 8.8rem);
+  --fs-display: clamp(2.5rem, 1.6rem + 4.4vw, 5.4rem);
 
-  /* geometry — sharper, more rectangular than a typical SaaS UI */
+  /* geometry — sharp near text, soft near glow; varied on purpose */
   --radius-sm: 3px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-xl: 22px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 26px;
   --radius-full: 999px;
   --container: 1240px;
 
   /* motion */
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-fast: 0.18s;
   --dur-med: 0.4s;
+  --dur-page: 0.5s;
 
   --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.02) inset,
-    0 24px 48px -28px rgba(0, 0, 0, 0.85);
+    0 24px 48px -28px rgba(0, 0, 0, 0.9);
+  --shadow-glow-sm: 0 0 0 1px var(--accent-soft), 0 8px 30px -12px var(--accent-glow);
 
   /* elevated / translucent surfaces (navbar, mobile menu overlay) */
-  --nav-surface: rgba(5, 5, 5, 0.78);
-  --overlay-surface: rgba(5, 5, 5, 0.98);
-  --field-bg: rgba(255, 255, 255, 0.02);
-  --surface-hairline: rgba(255, 255, 255, 0.018);
+  --nav-surface: rgba(6, 8, 16, 0.7);
+  --overlay-surface: rgba(5, 7, 13, 0.97);
+  --field-bg: rgba(148, 172, 255, 0.03);
+  --surface-hairline: rgba(148, 172, 255, 0.02);
+
+  /* z-index layers — one scale, so background/nav/overlay never fight */
+  --z-bg: 0;
+  --z-cursor: 5;
+  --z-content: 10;
+  --z-nav: 100;
+  --z-overlay: 200;
 
   /* ---- semantic aliases (same values, product-spec token names) ---- */
   --background: var(--bg-0);
@@ -95,31 +111,38 @@
 }
 
 /* ============================================================
-   light theme — an editorial paper surface, not an inversion
+   light theme — a bright signal room, not an inversion.
+   Glow and grid intensity get dialed down at the component level
+   (see AnimatedBackground / CursorGlow), never removed outright.
    ============================================================ */
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg-0: #f7f6f3;
-  --bg-1: #fbfaf8;
+  --bg-0: #f4f6fb;
+  --bg-1: #f9faFD;
   --bg-2: #ffffff;
-  --bg-3: #efeee9;
+  --bg-3: #eceffb;
 
-  --border: rgba(10, 10, 10, 0.12);
-  --border-strong: rgba(10, 10, 10, 0.22);
+  --border: rgba(20, 30, 70, 0.1);
+  --border-strong: rgba(20, 30, 70, 0.22);
 
-  --text-0: #0e0e0e;
-  --text-1: #55555a;
-  --text-2: #92928d;
+  --text-0: #0a0d1c;
+  --text-1: #4d5470;
+  --text-2: #868faf;
 
-  --accent: #0e0e0e;
-  --accent-dim: #2a2a2a;
-  --accent-ink: #f7f6f3;
-  --accent-soft: rgba(14, 14, 14, 0.05);
-  --accent-glow: rgba(14, 14, 14, 0.08);
+  --accent: #2f5be0;
+  --accent-dim: #1f3fa8;
+  --accent-ink: #f4f6fb;
+  --accent-soft: rgba(47, 91, 224, 0.08);
+  --accent-glow: rgba(47, 91, 224, 0.24);
 
-  --accent-2: #55555a;
-  --accent-2-soft: rgba(85, 85, 90, 0.08);
+  --accent-2: #0b93a8;
+  --accent-2-soft: rgba(11, 147, 168, 0.08);
+  --accent-2-glow: rgba(11, 147, 168, 0.2);
+
+  --accent-3: #6f4fe0;
+  --accent-3-soft: rgba(111, 79, 224, 0.08);
+  --accent-3-glow: rgba(111, 79, 224, 0.2);
 
   --success: #1f9d67;
   --success-soft: rgba(31, 157, 103, 0.1);
@@ -129,15 +152,16 @@
   --danger-soft: rgba(195, 67, 63, 0.08);
   --danger-border: rgba(195, 67, 63, 0.24);
 
-  --grain-dot: rgba(10, 10, 10, 0.035);
+  --grain-dot: rgba(20, 30, 70, 0.035);
 
-  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.6) inset,
-    0 20px 40px -26px rgba(20, 22, 32, 0.12);
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.7) inset,
+    0 20px 40px -26px rgba(20, 30, 70, 0.14);
+  --shadow-glow-sm: 0 0 0 1px var(--accent-soft), 0 8px 24px -14px var(--accent-glow);
 
-  --nav-surface: rgba(251, 250, 248, 0.82);
-  --overlay-surface: rgba(247, 246, 243, 0.98);
-  --field-bg: rgba(10, 10, 10, 0.03);
-  --surface-hairline: rgba(10, 10, 10, 0.025);
+  --nav-surface: rgba(249, 250, 253, 0.76);
+  --overlay-surface: rgba(244, 246, 251, 0.97);
+  --field-bg: rgba(20, 30, 70, 0.025);
+  --surface-hairline: rgba(20, 30, 70, 0.02);
 }
 
 * {
@@ -161,13 +185,13 @@ body {
   transition: background-color var(--dur-med) var(--ease), color var(--dur-med) var(--ease);
 }
 
-/* subtle grain so flat black sections don't feel like dead pixels */
+/* subtle grain so flat sections don't feel like dead pixels */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: var(--z-bg);
   background-image: radial-gradient(circle at 1px 1px, var(--grain-dot) 1px, transparent 0);
   background-size: 34px 34px;
   opacity: 0.6;
@@ -213,12 +237,12 @@ video {
 
 ::selection {
   background: var(--accent);
-  color: var(--accent-ink);
+  color: #fff;
 }
 
 /* focus visibility — never suppressed */
 :focus-visible {
-  outline: 1.5px solid var(--text-0);
+  outline: 1.5px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -231,12 +255,13 @@ video {
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 32px;
+  position: relative;
 }
 
 .section {
   position: relative;
   padding: 148px 0;
-  z-index: 1;
+  z-index: var(--z-content);
   border-top: 1px solid var(--border);
 }
 
@@ -249,7 +274,9 @@ video {
   }
 }
 
-/* editorial "01 / LABEL" numbered eyebrow — the recurring section marker */
+/* editorial "01 / LABEL" numbered eyebrow — the recurring section marker.
+   Glow-dot replaces the plain hairline lead-in: a small lit node, since
+   every section on this site is another point in the same network. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -265,9 +292,12 @@ video {
 
 .eyebrow::before {
   content: "";
-  width: 22px;
-  height: 1px;
-  background: var(--text-1);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft), 0 0 12px 0 var(--accent-glow);
+  flex: none;
 }
 
 .section-heading {
@@ -304,8 +334,19 @@ video {
   }
 }
 
+/* accent word inside a heading — the ONE recurring color move in type,
+   used sparingly (never whole headings) so it stays a signal, not noise */
+.text-accent {
+  color: var(--accent);
+}
+
+.text-glow {
+  color: var(--text-0);
+  text-shadow: 0 0 28px var(--accent-glow);
+}
+
 /* ============================================================
-   buttons — thin border, mono uppercase label, invert on hover
+   buttons — thin border, mono uppercase label, glow on primary
    ============================================================ */
 .btn {
   display: inline-flex;
@@ -322,7 +363,7 @@ video {
   border: 1px solid transparent;
   transition: transform var(--dur-fast) var(--ease),
     background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease),
-    color var(--dur-fast) var(--ease);
+    color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
   white-space: nowrap;
 }
 
@@ -332,14 +373,15 @@ video {
 
 .btn-primary {
   background: var(--accent);
-  color: var(--accent-ink);
+  color: #fff;
   border-color: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent-glow);
 }
 
 .btn-primary:hover {
-  background: transparent;
-  color: var(--text-0);
-  border-color: var(--border-strong);
+  background: var(--accent-dim);
+  border-color: var(--accent-dim);
+  box-shadow: 0 6px 28px -6px var(--accent-glow);
 }
 
 .btn-ghost {
@@ -349,9 +391,9 @@ video {
 }
 
 .btn-ghost:hover {
-  border-color: var(--text-0);
+  border-color: var(--accent);
   color: var(--text-0);
-  background: var(--field-bg);
+  background: var(--accent-soft);
 }
 
 .btn-danger {
@@ -385,7 +427,7 @@ video {
 }
 
 /* ============================================================
-   shared: glass surface — kept subtle, no heavy blur/gradient
+   shared: glass surface
    ============================================================ */
 .glass {
   background: var(--bg-2);
@@ -395,6 +437,19 @@ video {
 :root[data-theme="light"] .glass,
 .admin-root[data-admin-theme="light"] .glass {
   background: var(--bg-2);
+}
+
+/* translucent variant — used over the animated background, where a solid
+   --bg-2 would block the light network moving behind it */
+.glass-translucent {
+  background: linear-gradient(180deg, rgba(16, 23, 49, 0.6), rgba(11, 15, 30, 0.72));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+}
+
+:root[data-theme="light"] .glass-translucent {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.86));
 }
 
 /* ============================================================
@@ -419,6 +474,64 @@ video {
   font-family: var(--font-mono);
   font-weight: 500;
   color: var(--text-2);
+}
+
+/* status chip — LIVE / EXPERIMENTAL / BETA / COMING SOON (Lab cards, etc.) */
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 10px 5px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  color: var(--text-1);
+}
+
+.status-chip::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-2);
+  flex: none;
+}
+
+.status-chip--live {
+  color: var(--success);
+  border-color: var(--success-border);
+  background: var(--success-soft);
+}
+.status-chip--live::before {
+  background: var(--success);
+  box-shadow: 0 0 8px 0 var(--success);
+  animation: pulse-glow 2.2s var(--ease) infinite;
+}
+
+.status-chip--experimental {
+  color: var(--accent-3);
+  border-color: rgba(139, 123, 255, 0.32);
+  background: var(--accent-3-soft);
+}
+.status-chip--experimental::before {
+  background: var(--accent-3);
+}
+
+.status-chip--beta {
+  color: var(--accent-2);
+  border-color: rgba(47, 216, 232, 0.32);
+  background: var(--accent-2-soft);
+}
+.status-chip--beta::before {
+  background: var(--accent-2);
+}
+
+.status-chip--soon {
+  color: var(--text-1);
 }
 
 /* ============================================================
@@ -487,6 +600,25 @@ video {
   }
   100% {
     transform: translate3d(0, 0, 0);
+  }
+}
+
+/* slow pan for the global animated grid layer */
+@keyframes grid-pan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 64px 64px;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 

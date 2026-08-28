@@ -72,17 +72,11 @@
 }
 
 .project-detail__hero-media {
-  aspect-ratio: 21 / 9;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--bg-2);
   margin: 40px 0 0;
+  border-radius: var(--radius-lg) !important;
 }
 
-.project-detail__hero-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.project-detail__hero-media .image-frame__img {
   filter: grayscale(0.15) contrast(1.05);
 }
 
@@ -144,20 +138,15 @@
 .project-detail__gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 16px;
 }
 
-.project-detail__gallery img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.project-detail__gallery .image-frame__img {
   filter: grayscale(1) contrast(1.05);
   transition: filter var(--dur-med) var(--ease);
 }
 
-.project-detail__gallery img:hover {
+.project-detail__gallery .image-frame:hover .image-frame__img {
   filter: grayscale(0);
 }
 
@@ -250,5 +239,23 @@
   }
   .project-detail__hero-media {
     aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- related projects ---------- */
+.project-detail__related {
+  border-top: 1px solid var(--border);
+}
+
+.project-detail__related-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .project-detail__related-grid {
+    grid-template-columns: 1fr;
   }
 }

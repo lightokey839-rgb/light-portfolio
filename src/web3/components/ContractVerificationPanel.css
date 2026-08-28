@@ -1,0 +1,115 @@
+.contract-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+
+.contract-panel__head {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+  gap: 12px;
+  padding: 10px 16px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-1);
+  border-bottom: 1px solid var(--border);
+}
+
+.contract-panel__row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1.2fr 1fr;
+  gap: 12px;
+  padding: 14px 16px;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.contract-panel__row:last-child {
+  border-bottom: none;
+}
+
+.contract-panel__name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  min-width: 0;
+}
+
+.contract-panel__address {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  overflow-wrap: anywhere;
+}
+
+.contract-panel__network {
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+}
+
+.contract-panel__chainid {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+.contract-panel__status {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  width: fit-content;
+  color: var(--text-1);
+}
+
+.contract-panel__status--verified {
+  border-color: var(--success-border);
+  color: var(--success);
+  background: var(--success-soft);
+}
+
+.contract-panel__status--deployed {
+  border-color: var(--border-strong);
+  color: var(--text-0);
+}
+
+.contract-panel__status--pending {
+  border-style: dashed;
+  color: var(--text-2);
+}
+
+.contract-panel__links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--fs-xs);
+}
+
+.contract-panel__links a {
+  color: var(--text-0);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.contract-panel__links-empty {
+  color: var(--text-2);
+}
+
+@media (max-width: 720px) {
+  .contract-panel__head {
+    display: none;
+  }
+  .contract-panel__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .contract-panel__network::before {
+    content: "Network: ";
+    color: var(--text-2);
+  }
+}

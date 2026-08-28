@@ -1,0 +1,36 @@
+{
+  "name": "light-portfolio-web3",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Smart contracts for the Web3 projects showcased on the Light portfolio: DEX, NFT marketplace, DAO governance, and Chainlink oracle integration.",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "deploy:dex:local": "hardhat run scripts/deploy-dex.ts --network localhost",
+    "deploy:dex:sepolia": "hardhat run scripts/deploy-dex.ts --network sepolia",
+    "verify:dex:sepolia": "hardhat run scripts/verify-dex.ts --network sepolia",
+    "deploy:nft:local": "hardhat run scripts/deploy-nft.ts --network localhost",
+    "deploy:nft:sepolia": "hardhat run scripts/deploy-nft.ts --network sepolia",
+    "verify:nft:sepolia": "hardhat run scripts/verify-nft.ts --network sepolia",
+    "deploy:dao:local": "hardhat run scripts/deploy-dao.ts --network localhost",
+    "deploy:dao:sepolia": "hardhat run scripts/deploy-dao.ts --network sepolia",
+    "verify:dao:sepolia": "hardhat run scripts/verify-dao.ts --network sepolia",
+    "deploy:oracle:local": "hardhat run scripts/deploy-oracle.ts --network localhost",
+    "deploy:oracle:sepolia": "hardhat run scripts/deploy-oracle.ts --network sepolia",
+    "verify:oracle:sepolia": "hardhat run scripts/verify-oracle.ts --network sepolia",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@chainlink/contracts": "^1.2.0",
+    "@types/node": "^22.5.4",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.10",
+    "solhint": "^5.0.3",
+    "typescript": "^5.5.4"
+  }
+}

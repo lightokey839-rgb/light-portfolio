@@ -1,0 +1,41 @@
+.projects-page__hero {
+  position: relative;
+  padding: 190px 0 70px;
+}
+
+.projects-page__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.projects-page__body {
+  padding-top: 0;
+  border-top: none;
+}
+
+.projects-page__status {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.projects-page__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1080px) {
+  .projects-page__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .projects-page__hero {
+    padding: 140px 0 48px;
+  }
+  .projects-page__grid {
+    grid-template-columns: 1fr;
+  }
+}

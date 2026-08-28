@@ -1,0 +1,116 @@
+.project-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 0;
+  align-items: stretch;
+  background: var(--bg-0);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.project-feature--reverse {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+}
+
+.project-feature--reverse .project-feature__media {
+  order: 2;
+}
+
+.project-feature__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+}
+
+.project-feature__frame {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+}
+
+.project-feature__frame .image-frame__img {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter var(--dur-med) var(--ease), transform 0.6s var(--ease);
+}
+
+.project-feature:hover .project-feature__frame .image-frame__img {
+  filter: grayscale(0);
+  transform: scale(1.02);
+}
+
+.project-feature__body {
+  padding: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-feature__category {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.project-feature__name {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 14px;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.project-feature__name a:hover {
+  color: var(--accent);
+}
+
+.project-feature__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+  line-height: 1.7;
+  margin-bottom: 22px;
+  max-width: 46ch;
+}
+
+.project-feature__list {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.project-feature__list li {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+}
+
+.project-feature__list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.project-feature .project-card__tech {
+  margin-bottom: 26px;
+}
+
+@media (max-width: 860px) {
+  .project-feature,
+  .project-feature--reverse {
+    grid-template-columns: 1fr !important;
+  }
+  .project-feature__media {
+    order: 0 !important;
+  }
+  .project-feature__body {
+    padding: 30px;
+  }
+}

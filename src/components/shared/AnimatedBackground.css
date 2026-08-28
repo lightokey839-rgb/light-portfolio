@@ -1,0 +1,140 @@
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg-0);
+}
+
+.animated-bg__field {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+:root[data-theme="light"] .animated-bg__field {
+  opacity: 0.4;
+}
+
+.animated-bg__bloom {
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.5;
+  transition: transform 1.1s var(--ease), opacity 0.8s var(--ease);
+  will-change: transform;
+}
+
+:root[data-theme="light"] .animated-bg__bloom {
+  opacity: 0.22;
+  filter: blur(140px);
+}
+
+.animated-bg__bloom-1 {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: -12%;
+  right: -8%;
+}
+
+.animated-bg__bloom-2 {
+  background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  bottom: -18%;
+  left: -10%;
+  opacity: 0.32;
+}
+
+:root[data-theme="light"] .animated-bg__bloom-2 {
+  opacity: 0.16;
+}
+
+/* ---- per-page placement — same system, different composition ---- */
+.animated-bg--home .animated-bg__bloom-1 {
+  top: -14%;
+  right: -10%;
+  transform: scale(1.05);
+}
+
+.animated-bg--lab .animated-bg__bloom-1 {
+  background: radial-gradient(circle, var(--accent-3) 0%, transparent 70%);
+  top: -10%;
+  right: 6%;
+  transform: scale(1.15);
+}
+.animated-bg--lab .animated-bg__bloom-2 {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  bottom: -14%;
+  left: 2%;
+  opacity: 0.4;
+}
+
+.animated-bg--about .animated-bg__bloom-1 {
+  top: 4%;
+  right: 10%;
+  transform: scale(0.75);
+  opacity: 0.34;
+}
+.animated-bg--about .animated-bg__bloom-2 {
+  opacity: 0.18;
+}
+
+.animated-bg--projects .animated-bg__bloom-1 {
+  top: -8%;
+  left: 18%;
+  right: auto;
+}
+.animated-bg--projects .animated-bg__bloom-2 {
+  background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  bottom: -16%;
+  right: -6%;
+  left: auto;
+}
+
+.animated-bg--writing .animated-bg__bloom-1 {
+  transform: scale(0.6);
+  opacity: 0.28;
+  top: 0;
+  right: 20%;
+}
+.animated-bg--writing .animated-bg__bloom-2 {
+  opacity: 0.12;
+}
+
+.animated-bg--opensource .animated-bg__bloom-1 {
+  background: radial-gradient(circle, var(--accent-2) 0%, transparent 70%);
+  top: -10%;
+  right: 4%;
+}
+.animated-bg--opensource .animated-bg__bloom-2 {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  bottom: -14%;
+  left: 6%;
+}
+
+.animated-bg--minimal .animated-bg__bloom-1 {
+  transform: scale(0.55);
+  opacity: 0.22;
+}
+.animated-bg--minimal .animated-bg__bloom-2 {
+  opacity: 0.1;
+}
+
+.animated-bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 70% at 50% 0%, transparent 55%, var(--bg-0) 100%);
+}
+
+@media (max-width: 720px) {
+  .animated-bg__bloom {
+    width: 90vw;
+    height: 90vw;
+    filter: blur(90px);
+  }
+}

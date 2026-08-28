@@ -25,6 +25,12 @@ const TECHNOLOGIES: { name: string; category: string }[] = [
   { name: "Wallet Integrations", category: "Web3 & Integrations" },
   { name: "Web3 APIs", category: "Web3 & Integrations" },
   { name: "Blockchain Integrations", category: "Web3 & Integrations" },
+  { name: "Solidity", category: "Web3 & Integrations" },
+  { name: "Hardhat", category: "Web3 & Integrations" },
+  { name: "OpenZeppelin", category: "Web3 & Integrations" },
+  { name: "wagmi", category: "Web3 & Integrations" },
+  { name: "viem", category: "Web3 & Integrations" },
+  { name: "Chainlink", category: "Web3 & Integrations" },
   { name: "Git", category: "Tools" },
   { name: "GitHub", category: "Tools" },
   { name: "VS Code", category: "Tools" },
@@ -76,7 +82,94 @@ const PROJECTS: {
   challenge?: string;
   solution?: string;
   keyFeatures?: string[];
+  liveUrl?: string;
+  githubUrl?: string;
+  results?: string;
 }[] = [
+  {
+    title: "LightSwap — DeFi / DEX",
+    slug: "lightswap-defi-dex",
+    category: "DeFi",
+    description:
+      "A constant-product AMM (Uniswap V2 architecture, independently implemented) with real token swaps, liquidity pools, and LP accounting — Solidity contracts, Hardhat test suite, and a wallet-connected frontend, deployed to Sepolia testnet.",
+    sortOrder: -1,
+    technologies: ["Solidity", "Hardhat", "OpenZeppelin", "wagmi", "viem", "React", "TypeScript"],
+    featured: true,
+    challenge:
+      "Demonstrate real DeFi engineering — not a mockup — covering AMM math, LP accounting, slippage protection, and the full wallet-to-contract transaction lifecycle, verifiably rather than as static screenshots.",
+    solution:
+      "A from-scratch constant-product AMM: LightSwapFactory, LightSwapPair (itself the LP token), and LightSwapRouter, with a Hardhat test suite covering happy paths, invariant violations, and access control, plus a React frontend using wagmi/viem for wallet connection, live quotes, and price-impact display.",
+    keyFeatures: [
+      "Token swaps with live price-impact and slippage-tolerance controls",
+      "Add/remove liquidity with proportional LP-share accounting",
+      "Full transaction state machine: connect, approve, sign, pending, confirmed, failed, rejected",
+      "Centralized contract registry with an honest 'deployment pending' state — no fabricated addresses",
+    ],
+    liveUrl: "/lab/dex",
+  },
+  {
+    title: "LightNFT Marketplace — NFT",
+    slug: "lightnft-marketplace",
+    category: "NFT",
+    description:
+      "An ERC-721 collection with fully on-chain generative metadata (no IPFS dependency), plus a pull-payment NFT marketplace: mint, list, buy, and cancel — wired to real Solidity contracts on Sepolia testnet.",
+    sortOrder: -1,
+    technologies: ["Solidity", "Hardhat", "OpenZeppelin", "wagmi", "viem", "React", "TypeScript"],
+    featured: true,
+    challenge:
+      "Demonstrate NFT marketplace engineering — ownership checks, listing authorization, and payment handling — without depending on an IPFS pinning service this environment has no way to set up or keep available.",
+    solution:
+      "An ERC-721 collection whose tokenURI generates its JSON metadata and SVG image fully on-chain and base64-encoded, paired with a marketplace contract using the pull-payment pattern (proceeds are credited, then withdrawn separately) so a broken or malicious seller contract can never block a sale.",
+    keyFeatures: [
+      "Free public mint (capped 5/wallet, 500 total) with fully on-chain generative art",
+      "List, cancel, and buy flows with ownership + approval checks before a listing is accepted",
+      "Stale-listing detection — a token transferred outside the marketplace fails the purchase cleanly",
+      "Pull-payment proceeds withdrawal, isolated from the buy transaction",
+    ],
+    liveUrl: "/lab/nft",
+  },
+  {
+    title: "LightDAO — Governance",
+    slug: "lightdao-governance",
+    category: "DAO",
+    description:
+      "Token-weighted DAO governance built on OpenZeppelin's audited Governor + TimelockController modules: proposal creation, delegated voting, quorum, and timelock-gated treasury execution — wired to real Solidity contracts on Sepolia testnet.",
+    sortOrder: -1,
+    technologies: ["Solidity", "Hardhat", "OpenZeppelin", "wagmi", "viem", "React", "TypeScript"],
+    featured: true,
+    challenge:
+      "Demonstrate DAO engineering with genuine governance guarantees — flash-loan-resistant voting power, a timelock between a passed vote and fund movement, no privileged admin left standing — using established primitives rather than a bespoke voting contract.",
+    solution:
+      "An OpenZeppelin Governor composed with checkpointed ERC20Votes voting power, percentage-of-supply quorum, and GovernorTimelockControl. The TimelockController itself is the treasury; its proposer role is granted solely to the Governor and the deployer's admin role is renounced right after setup, so no address ever retains unilateral control.",
+    keyFeatures: [
+      "Delegate-then-vote flow matching real DAO UX (Compound/Uniswap-style ERC20Votes)",
+      "Live proposal dashboard: state, for/against/abstain tally, quorum progress, voting deadline",
+      "Constrained treasury-transfer proposal template rather than free-form calldata input",
+      "Full lifecycle wired end-to-end: propose → vote → queue → timelock delay → execute",
+    ],
+    liveUrl: "/lab/dao",
+  },
+  {
+    title: "LightOracle — Chainlink Integration",
+    slug: "lightoracle-chainlink",
+    category: "Infrastructure",
+    description:
+      "Secure external data consumption using Chainlink: a Data Feed consumer with staleness and validity checks, plus a Chainlink Automation-compatible contract that records price snapshots on a schedule — reading Chainlink's real live Sepolia ETH/USD feed, never mocked data.",
+    sortOrder: -1,
+    technologies: ["Solidity", "Hardhat", "Chainlink", "wagmi", "viem", "React", "TypeScript"],
+    featured: true,
+    challenge:
+      "Demonstrate safe on-chain consumption of external data — the exact place naive integrations get exploited via stale or manipulated prices — using Chainlink's real, already-deployed infrastructure rather than a convenient mock presented as live data.",
+    solution:
+      "A consumer contract that validates every value Chainlink's Sepolia ETH/USD feed returns (positive price, complete round, not stale) before trusting it, paired with an Automation-compatible contract (checkUpkeep/performUpkeep) that records validated snapshots on a schedule — demonstrating two separate Chainlink products, Data Feeds and Automation, working together.",
+    keyFeatures: [
+      "Reads Chainlink's real, verified Sepolia ETH/USD feed — address confirmed against Chainlink's own documentation",
+      "Reverts on stale, invalid, or incomplete-round data rather than silently returning it",
+      "Chainlink Automation-compatible snapshotting, triggerable manually in this demo pending real Automation registration",
+      "Bounded on-chain history (oldest snapshot evicted) rather than unbounded storage growth",
+    ],
+    liveUrl: "/lab/oracle",
+  },
   {
     title: "Web3 / Memecoin Website",
     slug: "web3-memecoin-website",

@@ -1,0 +1,21 @@
+.glow-grid {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background-image: linear-gradient(var(--field-bg) 1px, transparent 1px),
+    linear-gradient(90deg, var(--field-bg) 1px, transparent 1px);
+  background-size: var(--glow-grid-size) var(--glow-grid-size);
+  opacity: var(--glow-grid-opacity);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 0%, transparent 78%);
+}
+
+.glow-grid--animated {
+  animation: grid-pan 26s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-grid--animated {
+    animation: none;
+  }
+}

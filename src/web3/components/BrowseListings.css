@@ -1,0 +1,38 @@
+.browse-listings--pending,
+.browse-listings__status {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  padding: 20px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.browse-listings__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.browse-listings__buy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.browse-listings__buy-btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 9px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.browse-listings__buy-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

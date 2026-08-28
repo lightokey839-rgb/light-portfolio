@@ -1,0 +1,90 @@
+.arch-diagram {
+  margin: 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+}
+
+.arch-diagram__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-1);
+  margin-bottom: 18px;
+}
+
+.arch-diagram__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 420px;
+}
+
+.arch-diagram__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arch-diagram__node {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg-3);
+}
+
+.arch-diagram__node--onchain {
+  border-color: var(--success-border);
+  background: var(--success-soft);
+}
+
+.arch-diagram__node--infra {
+  border-style: dashed;
+}
+
+.arch-diagram__layer {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-1);
+}
+
+.arch-diagram__node--onchain .arch-diagram__layer {
+  color: var(--success);
+}
+
+.arch-diagram__label {
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  font-weight: 600;
+}
+
+.arch-diagram__detail {
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+}
+
+.arch-diagram__arrow {
+  color: var(--text-2);
+  font-size: var(--fs-md);
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .arch-diagram {
+    padding: 16px;
+  }
+  .arch-diagram__steps {
+    max-width: 100%;
+  }
+}

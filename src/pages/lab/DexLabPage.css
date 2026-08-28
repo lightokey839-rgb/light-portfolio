@@ -1,0 +1,116 @@
+.dex-lab {
+  padding: 120px 0 80px;
+}
+
+.dex-lab__back {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+.dex-lab__back:hover {
+  color: var(--text-0);
+}
+
+.dex-lab__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.dex-lab__app {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--bg-1);
+  margin-bottom: 56px;
+}
+
+.dex-lab__tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.dex-lab__tabs button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 8px 18px;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.dex-lab__tabs button.is-active {
+  border-color: var(--text-0);
+  color: var(--text-0);
+}
+
+.dex-lab__section {
+  margin-bottom: 56px;
+}
+
+.dex-lab__section h2 {
+  font-size: var(--fs-xl);
+  margin-bottom: 18px;
+}
+
+.dex-lab__security-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.dex-lab__security-list code {
+  font-family: var(--font-mono);
+  color: var(--text-0);
+  background: var(--bg-3);
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+}
+
+.dex-lab__disclaimer {
+  margin-top: 18px;
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+
+.dex-lab__links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: var(--fs-sm);
+}
+
+.dex-lab__links a {
+  color: var(--text-0);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .dex-lab {
+    padding: 100px 0 60px;
+  }
+  .dex-lab__header {
+    flex-direction: column;
+  }
+  .dex-lab__app {
+    padding: 18px;
+  }
+}

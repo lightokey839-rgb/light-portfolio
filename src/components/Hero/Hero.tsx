@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useSiteSettings } from "../../context/SiteSettingsContext";
 import lightProfileWebp from "../../assets/images/light-profile.webp";
 import lightProfilePng from "../../assets/images/light-profile.png";
@@ -134,11 +135,22 @@ export default function Hero() {
             <a href="#projects" className="btn btn-primary">
               View My Work
             </a>
-            <a href="#contact" className="btn btn-ghost">
+            <Link to="/contact" className="btn btn-ghost">
               Let's Work Together
-            </a>
+            </Link>
           </div>
         </div>
+
+        <nav className="hero__lab-links" aria-label="Live Web3 project demos">
+          <span className="hero__lab-label mono-label">Live on Sepolia testnet —</span>
+          <Link to="/lab/dex">DeFi/DEX</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/lab/nft">NFT Marketplace</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/lab/dao">DAO Governance</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/lab/oracle">Chainlink Oracle</Link>
+        </nav>
       </div>
     </section>
   );

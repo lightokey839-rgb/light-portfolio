@@ -11,7 +11,7 @@ import {
 // see src/admin/context/AdminThemeContext.tsx for the admin's independent
 // equivalent. The two intentionally do not share a storage key, a context,
 // or the "data-theme" attribute's scope, so toggling one can never affect
-// the other. See PortfolioPage.tsx / AdminApp.tsx for where each is mounted.
+// the other. See App.tsx / AdminApp.tsx for where each is mounted.
 
 export type Theme = "dark" | "light";
 

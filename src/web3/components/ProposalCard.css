@@ -1,0 +1,180 @@
+.proposal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+}
+
+.proposal-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.proposal-card__state {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-strong);
+  color: var(--text-1);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.proposal-card__state--active,
+.proposal-card__state--succeeded,
+.proposal-card__state--queued,
+.proposal-card__state--executed {
+  border-color: var(--success-border);
+  color: var(--success);
+  background: var(--success-soft);
+}
+
+.proposal-card__state--defeated,
+.proposal-card__state--canceled,
+.proposal-card__state--expired {
+  border-color: var(--danger-border);
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.proposal-card__id {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+
+.proposal-card__description {
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  margin: 0;
+}
+
+.proposal-card__target {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  margin: 0;
+}
+
+.proposal-card__votes {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.proposal-card__vote-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+}
+
+.proposal-card__vote-track {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--bg-3);
+  overflow: hidden;
+}
+
+.proposal-card__vote-fill {
+  height: 100%;
+}
+
+.proposal-card__vote-fill--for {
+  background: var(--success);
+}
+
+.proposal-card__vote-fill--against {
+  background: var(--danger);
+}
+
+.proposal-card__vote-fill--abstain {
+  background: var(--text-2);
+}
+
+.proposal-card__vote-amount {
+  min-width: 70px;
+  text-align: right;
+}
+
+.proposal-card__quorum {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  margin: 2px 0 0;
+}
+
+.proposal-card__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  margin: 0;
+}
+
+.proposal-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.proposal-card__vote-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.proposal-card__vote-buttons button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-0);
+  cursor: pointer;
+}
+
+.proposal-card__primary-btn {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 9px 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.proposal-card__voted,
+.proposal-card__note {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  margin: 0;
+}
+
+@media (max-width: 420px) {
+  .proposal-card__vote-row {
+    grid-template-columns: 50px 1fr;
+    row-gap: 2px;
+  }
+  .proposal-card__vote-amount {
+    grid-column: 2;
+    text-align: left;
+    min-width: 0;
+  }
+  .proposal-card__vote-buttons button {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}

@@ -1,0 +1,115 @@
+.liquidity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  max-width: 440px;
+  width: 100%;
+}
+
+.liquidity-card--pending {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.liquidity-card__tabs {
+  display: flex;
+  gap: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 4px;
+}
+
+.liquidity-card__tabs button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.liquidity-card__tabs button.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.liquidity-card__pool-info {
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  margin: 0;
+}
+
+.liquidity-card__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+}
+
+.liquidity-card__field input {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  color: var(--text-0);
+  font-size: var(--fs-md);
+  font-family: var(--font-display);
+}
+
+.liquidity-card__field input:focus {
+  outline: 2px solid var(--text-0);
+  outline-offset: 1px;
+}
+
+.liquidity-card__lp-balance {
+  font-size: var(--fs-sm);
+  color: var(--text-0);
+  margin: 0;
+}
+
+.liquidity-card__percent-row {
+  display: flex;
+  gap: 6px;
+}
+
+.liquidity-card__percent-row button {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 7px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-1);
+  cursor: pointer;
+}
+
+.liquidity-card__percent-row button.is-active {
+  border-color: var(--text-0);
+  color: var(--text-0);
+}
+
+.liquidity-card__action {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.liquidity-card__action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

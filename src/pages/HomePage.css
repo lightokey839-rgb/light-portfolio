@@ -1,0 +1,45 @@
+.lab-preview__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.lab-preview__chip {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 22px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--bg-2);
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.lab-preview__chip:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-glow-sm);
+  transform: translateY(-2px);
+}
+
+.lab-preview__chip-glyph {
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--accent-3);
+}
+
+.lab-preview__chip-name {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-0);
+}
+
+@media (max-width: 640px) {
+  .lab-preview__row {
+    flex-direction: column;
+  }
+  .lab-preview__chip {
+    justify-content: space-between;
+  }
+}

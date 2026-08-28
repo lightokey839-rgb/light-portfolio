@@ -1,0 +1,4 @@
+.page-transition-root {
+  position: relative;
+  z-index: var(--z-content);
+}

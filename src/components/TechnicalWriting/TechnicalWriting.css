@@ -1,0 +1,32 @@
+.technical-writing {
+}
+
+.technical-writing__intro {
+  margin-top: 20px;
+  max-width: 60ch;
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+  line-height: 1.7;
+}
+
+.technical-writing__topics {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.technical-writing__topics li {
+  background: var(--bg-0);
+  padding: 20px 22px;
+  font-size: var(--fs-sm);
+  color: var(--text-1);
+}
+
+@media (max-width: 560px) {
+  .technical-writing__topics {
+    grid-template-columns: 1fr;
+  }
+}

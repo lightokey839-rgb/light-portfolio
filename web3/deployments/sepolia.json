@@ -1,0 +1,27 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "updatedAt": null,
+  "dex": {
+    "LightSwapFactory": { "address": null, "txHash": null, "verified": false, "explorerUrl": null },
+    "LightSwapRouter": { "address": null, "txHash": null, "verified": false, "explorerUrl": null },
+    "LightUSD": { "address": null, "txHash": null, "verified": false, "explorerUrl": null },
+    "LightDAI": { "address": null, "txHash": null, "verified": false, "explorerUrl": null },
+    "LightUSD_LightDAI_Pair": { "address": null, "txHash": null, "verified": false, "explorerUrl": null }
+  },
+  "nft": {
+    "LightNFT": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null },
+    "LightNFTMarketplace": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null }
+  },
+  "dao": {
+    "LightGovernanceToken": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null },
+    "TimelockController": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null },
+    "LightGovernor": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null }
+  },
+  "oracle": {
+    "chainlinkFeed": { "address": "0x694AA1769357215DE4FAC081bf1f309aDC325306", "note": "Chainlink's own live Sepolia ETH/USD feed -- not deployed by this project. Verified against https://docs.chain.link/data-feeds/price-feeds/addresses", "explorerUrl": "https://sepolia.etherscan.io/address/0x694AA1769357215DE4FAC081bf1f309aDC325306" },
+    "LightPriceConsumer": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null },
+    "LightPriceSnapshotter": { "address": null, "txHash": null, "verified": false, "explorerUrl": null, "deployedAtBlock": null }
+  },
+  "_note": "Written by web3/scripts/deploy-*.ts, one namespace per project. Every address ships null (except oracle.chainlinkFeed, which is Chainlink's real pre-existing infrastructure, not something this project deploys) because no deployment has run yet -- see web3/README.md for the exact deploy command per project. The frontend registry (src/web3/config/contracts.ts) reads this file and renders 'Deployment pending' for any null address instead of guessing. deployedAtBlock (nft, dao, oracle) bounds event-log queries so they don't scan from genesis."
+}

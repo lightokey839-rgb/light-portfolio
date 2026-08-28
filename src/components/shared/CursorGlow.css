@@ -1,0 +1,26 @@
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  mix-blend-mode: screen;
+  transition: opacity 0.4s var(--ease);
+  will-change: transform;
+}
+
+:root[data-theme="light"] .cursor-glow {
+  mix-blend-mode: multiply;
+  opacity: 0;
+}
+
+@media (max-width: 860px) {
+  .cursor-glow {
+    display: none;
+  }
+}

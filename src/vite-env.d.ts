@@ -2,6 +2,8 @@
 
 interface ImportMetaEnv {
   readonly VITE_API_URL: string;
+  readonly VITE_SEPOLIA_RPC_URL: string;
+  readonly VITE_GITHUB_REPO_URL: string;
 }
 
 interface ImportMeta {

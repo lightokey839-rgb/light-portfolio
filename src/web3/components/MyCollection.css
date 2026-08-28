@@ -1,0 +1,60 @@
+.my-collection--pending,
+.my-collection__status {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  padding: 20px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.my-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.my-collection__manage {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.my-collection__price-input {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 7px 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-0);
+}
+
+.my-collection__price-input:focus {
+  outline: 2px solid var(--text-0);
+  outline-offset: 1px;
+}
+
+.my-collection__btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  padding: 8px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-0);
+  cursor: pointer;
+}
+
+.my-collection__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.my-collection__listed-price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--success);
+  margin: 0;
+}

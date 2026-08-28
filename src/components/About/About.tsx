@@ -3,6 +3,7 @@ import "./About.css";
 
 const CAPABILITIES = [
   "Web3 Development",
+  "Smart Contracts",
   "Telegram Bots",
   "Mini Apps",
   "Community Moderation",

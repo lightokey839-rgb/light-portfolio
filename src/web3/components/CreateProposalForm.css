@@ -1,0 +1,59 @@
+.create-proposal {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  max-width: 480px;
+}
+
+.create-proposal__intro {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.create-proposal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+}
+
+.create-proposal__field input,
+.create-proposal__field textarea {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  color: var(--text-0);
+  font-size: var(--fs-sm);
+  font-family: inherit;
+  resize: vertical;
+}
+
+.create-proposal__field input:focus,
+.create-proposal__field textarea:focus {
+  outline: 2px solid var(--text-0);
+  outline-offset: 1px;
+}
+
+.create-proposal__submit {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.create-proposal__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,46 @@
+.mint-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-2);
+  max-width: 440px;
+}
+
+.mint-panel--pending {
+  color: var(--text-1);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+}
+
+.mint-panel__stats {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-1);
+  margin: 0;
+}
+
+.mint-panel__btn {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  padding: 13px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  background: var(--accent);
+  color: var(--accent-ink);
+  cursor: pointer;
+}
+
+.mint-panel__btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mint-panel__note {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  margin: 0;
+  line-height: 1.5;
+}

@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { useSiteSettings } from "../../context/SiteSettingsContext";
 import { sendContactMessage } from "../../lib/api/messages";
 import { ApiError } from "../../lib/api/client";
@@ -70,9 +71,9 @@ export default function Contact() {
                 Email Me
               </a>
             ) : null}
-            <a href="#projects" className="btn btn-ghost">
+            <Link to="/projects" className="btn btn-ghost">
               View Projects
-            </a>
+            </Link>
           </div>
 
           {(settings.telegram || settings.email || settings.github) && (

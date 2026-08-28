@@ -23,7 +23,8 @@ const SiteSettingsContext = createContext<SiteSettings>(FALLBACK_SETTINGS);
 
 /**
  * Fetches /settings once for the whole public site and shares it via
- * context. Mounted in PortfolioPage.tsx. Previously Hero fetched this
+ * context. Mounted once around the public route tree in App.tsx.
+ * Previously Hero fetched this
  * itself while Contact and Footer hardcoded links from src/data/site.ts
  * instead — meaning editing socials in /admin/settings silently didn't
  * reach two of the three places they're shown. This fixes that and cuts

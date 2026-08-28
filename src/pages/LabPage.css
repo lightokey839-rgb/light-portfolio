@@ -1,0 +1,104 @@
+.lab-page {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+.lab-hero {
+  position: relative;
+  padding: 190px 0 100px;
+  overflow: hidden;
+}
+
+.lab-hero__grid {
+  opacity: 0.35 !important;
+}
+
+.lab-hero__inner {
+  position: relative;
+}
+
+.lab-hero__heading {
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  max-width: 16ch;
+}
+
+.lab-hero__sub {
+  margin-top: 28px;
+  font-size: var(--fs-md);
+  font-family: var(--font-body);
+  max-width: 56ch;
+  color: var(--text-1);
+  line-height: 1.7;
+  text-transform: none;
+}
+
+.lab-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  margin-top: 64px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border);
+}
+
+.lab-hero__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lab-hero__stat .big-number {
+  font-size: var(--fs-xl);
+  color: var(--text-0);
+}
+
+.lab-grid-section {
+  border-top: none;
+}
+
+.lab-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.lab-note-section {
+  padding-bottom: 160px;
+}
+
+.lab-note {
+  max-width: 640px;
+}
+
+.lab-note__heading {
+  font-size: var(--fs-3xl);
+  margin-top: 4px;
+}
+
+.lab-note__sub {
+  text-transform: none;
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  max-width: 56ch;
+  line-height: 1.7;
+}
+
+.lab-note__btn {
+  margin-top: 32px;
+}
+
+@media (max-width: 860px) {
+  .lab-hero {
+    padding: 140px 0 72px;
+  }
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-hero__stats {
+    gap: 32px;
+  }
+}

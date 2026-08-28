@@ -1,0 +1,160 @@
+/**
+ * ABI for LightGovernor — see the note in LightGovernanceToken.ts about
+ * how this was produced and what should replace it after `npm run compile`.
+ */
+export const lightGovernorAbi = [
+  {
+    type: "function",
+    name: "propose",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "targets", type: "address[]" },
+      { name: "values", type: "uint256[]" },
+      { name: "calldatas", type: "bytes[]" },
+      { name: "description", type: "string" },
+    ],
+    outputs: [{ name: "proposalId", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "castVote",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "proposalId", type: "uint256" },
+      { name: "support", type: "uint8" },
+    ],
+    outputs: [{ name: "balance", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "castVoteWithReason",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "proposalId", type: "uint256" },
+      { name: "support", type: "uint8" },
+      { name: "reason", type: "string" },
+    ],
+    outputs: [{ name: "balance", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "queue",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "targets", type: "address[]" },
+      { name: "values", type: "uint256[]" },
+      { name: "calldatas", type: "bytes[]" },
+      { name: "descriptionHash", type: "bytes32" },
+    ],
+    outputs: [{ name: "proposalId", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "execute",
+    stateMutability: "payable",
+    inputs: [
+      { name: "targets", type: "address[]" },
+      { name: "values", type: "uint256[]" },
+      { name: "calldatas", type: "bytes[]" },
+      { name: "descriptionHash", type: "bytes32" },
+    ],
+    outputs: [{ name: "proposalId", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "state",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [{ name: "", type: "uint8" }],
+  },
+  {
+    type: "function",
+    name: "proposalVotes",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [
+      { name: "againstVotes", type: "uint256" },
+      { name: "forVotes", type: "uint256" },
+      { name: "abstainVotes", type: "uint256" },
+    ],
+  },
+  {
+    type: "function",
+    name: "proposalDeadline",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "proposalSnapshot",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "function",
+    name: "proposalProposer",
+    stateMutability: "view",
+    inputs: [{ name: "proposalId", type: "uint256" }],
+    outputs: [{ name: "", type: "address" }],
+  },
+  {
+    type: "function",
+    name: "hasVoted",
+    stateMutability: "view",
+    inputs: [
+      { name: "proposalId", type: "uint256" },
+      { name: "account", type: "address" },
+    ],
+    outputs: [{ name: "", type: "bool" }],
+  },
+  {
+    type: "function",
+    name: "quorum",
+    stateMutability: "view",
+    inputs: [{ name: "timepoint", type: "uint256" }],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  { type: "function", name: "votingDelay", stateMutability: "view", inputs: [], outputs: [{ name: "", type: "uint256" }] },
+  { type: "function", name: "votingPeriod", stateMutability: "view", inputs: [], outputs: [{ name: "", type: "uint256" }] },
+  { type: "function", name: "proposalThreshold", stateMutability: "view", inputs: [], outputs: [{ name: "", type: "uint256" }] },
+  {
+    type: "function",
+    name: "hashProposal",
+    stateMutability: "pure",
+    inputs: [
+      { name: "targets", type: "address[]" },
+      { name: "values", type: "uint256[]" },
+      { name: "calldatas", type: "bytes[]" },
+      { name: "descriptionHash", type: "bytes32" },
+    ],
+    outputs: [{ name: "", type: "uint256" }],
+  },
+  {
+    type: "event",
+    name: "ProposalCreated",
+    inputs: [
+      { name: "proposalId", type: "uint256", indexed: false },
+      { name: "proposer", type: "address", indexed: false },
+      { name: "targets", type: "address[]", indexed: false },
+      { name: "values", type: "uint256[]", indexed: false },
+      { name: "signatures", type: "string[]", indexed: false },
+      { name: "calldatas", type: "bytes[]", indexed: false },
+      { name: "voteStart", type: "uint256", indexed: false },
+      { name: "voteEnd", type: "uint256", indexed: false },
+      { name: "description", type: "string", indexed: false },
+    ],
+  },
+  {
+    type: "event",
+    name: "VoteCast",
+    inputs: [
+      { name: "voter", type: "address", indexed: true },
+      { name: "proposalId", type: "uint256", indexed: false },
+      { name: "support", type: "uint8", indexed: false },
+      { name: "weight", type: "uint256", indexed: false },
+      { name: "reason", type: "string", indexed: false },
+    ],
+  },
+] as const;
