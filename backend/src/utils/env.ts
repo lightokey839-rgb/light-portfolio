@@ -29,7 +29,12 @@ const envSchema = z.object({
   FRONTEND_URL: z
     .string()
     .url("FRONTEND_URL must be a valid URL, e.g. http://localhost:5173"),
+
+  SUPABASE_URL: z.string().url("SUPABASE_URL must be a valid URL"),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1, "SUPABASE_SERVICE_ROLE_KEY is required"),
+  SUPABASE_STORAGE_BUCKET: z.string().min(1).default("uploads"),
 });
+
 
 export type Env = z.infer<typeof envSchema>;
 

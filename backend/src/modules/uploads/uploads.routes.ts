@@ -1,11 +1,7 @@
 import { randomUUID } from "node:crypto";
-import { createWriteStream } from "node:fs";
-import { mkdir, unlink } from "node:fs/promises";
-import path from "node:path";
-import { pipeline } from "node:stream/promises";
 import type { FastifyInstance } from "fastify";
 import { sendError } from "../../middleware/errorHandler.js";
-import { UPLOADS_DIR } from "../../utils/paths.js";
+import { supabaseStorage, STORAGE_BUCKET } from "../../plugins/supabaseStorage.js";
 
 const ALLOWED_MIME_TYPES = new Set(["image/jpeg", "image/jpg", "image/png", "image/webp"]);
 
@@ -19,8 +15,6 @@ const EXTENSION_BY_MIME: Record<string, string> = {
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
 
 export default async function uploadRoutes(fastify: FastifyInstance) {
-  await mkdir(UPLOADS_DIR, { recursive: true });
-
   // POST /api/v1/uploads/image
   fastify.post("/uploads/image", { preHandler: fastify.authenticate }, async (request, reply) => {
     const file = await request.file({ limits: { fileSize: MAX_FILE_SIZE_BYTES } });
@@ -30,34 +24,31 @@ export default async function uploadRoutes(fastify: FastifyInstance) {
     }
 
     if (!ALLOWED_MIME_TYPES.has(file.mimetype)) {
-      return sendError(
-        reply,
-        400,
-        "UNSUPPORTED_FILE_TYPE",
-        "Only JPG, PNG, and WEBP images are allowed."
-      );
+      return sendError(reply, 400, "UNSUPPORTED_FILE_TYPE", "Only JPG, PNG, and WEBP images are allowed.");
     }
 
-    // The filename is entirely server-generated — the client's original
-    // filename is never used for anything, which rules out path
-    // traversal and arbitrary-extension tricks by construction.
+    // Server-generated filename only — the client's original filename is
+    // never used, which rules out path traversal and extension tricks.
     const filename = `${randomUUID()}${EXTENSION_BY_MIME[file.mimetype]}`;
-    const filepath = path.join(UPLOADS_DIR, filename);
-
-    try {
-      await pipeline(file.file, createWriteStream(filepath));
-    } catch {
-      return sendError(reply, 500, "UPLOAD_FAILED", "Failed to save the uploaded file.");
-    }
+    const buffer = await file.toBuffer();
 
     // @fastify/multipart doesn't throw when a file exceeds the size
-    // limit — it truncates the stream and sets this flag instead, so it
-    // must be checked explicitly after the write completes.
+    // limit — it truncates and sets this flag instead.
     if (file.file.truncated) {
-      await unlink(filepath).catch(() => undefined);
       return sendError(reply, 413, "FILE_TOO_LARGE", "Image must be 5MB or smaller.");
     }
 
-    return reply.status(201).send({ url: `/uploads/${filename}` });
+    const { error } = await supabaseStorage.storage
+      .from(STORAGE_BUCKET)
+      .upload(filename, buffer, { contentType: file.mimetype, upsert: false });
+
+    if (error) {
+      request.log.error(error, "Failed to upload image to Supabase Storage");
+      return sendError(reply, 500, "UPLOAD_FAILED", "Failed to save the uploaded file.");
+    }
+
+    const { data } = supabaseStorage.storage.from(STORAGE_BUCKET).getPublicUrl(filename);
+
+    return reply.status(201).send({ url: data.publicUrl });
   });
 }
